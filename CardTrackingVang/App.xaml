@@ -9,6 +9,29 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <!-- https://coolors.co/palette/011627-fdfffc-2ec4b6-e71d36-ff9f1c -->
+            <Color x:Key="EvanBlack">
+                #011627
+            </Color>
+            <Color x:Key="EvanWhite">
+                #FDFFFC
+            </Color>
+            <Color x:Key="EvanTeal">
+                #2EC4B6
+            </Color>
+            <Color x:Key="EvanRed">
+                #E71D36
+            </Color>
+            <Color x:Key="EvanYellow">
+                #FF9F1C
+            </Color>
+
+            <Style x:Key="TitleLabelStyling" TargetType="Label">
+                <Setter Property="BackgroundColor" Value="{StaticResource EvanRed}" />
+                <Setter Property="HorizontalTextAlignment"  Value="Center"/>
+                <Setter Property="FontSize" Value="Header"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
