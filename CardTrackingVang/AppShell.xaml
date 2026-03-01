@@ -5,10 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:CardTrackingVang"
     Title="CardTrackingVang">
-
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <Tab Title="Cards">
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage"/>
+        </Tab>
+        <Tab Title="Card Management">
+            <ShellContent ContentTemplate="{DataTemplate local:CardHandling}" Route="CardHandling"/>
+        </Tab>
+    </TabBar>
 
 </Shell>
