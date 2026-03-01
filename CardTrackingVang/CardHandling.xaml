@@ -5,5 +5,7 @@
              Title="CardHandling">
     <VerticalStackLayout>
         <Label Style="{StaticResource TitleLabelStyling}">Add or Delete your Cards</Label>
+
+        <Button x:Name="AddCardBtn" Style="{StaticResource Add Button}" Text="Add a card" Clicked="AddCardBtn_Clicked"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -32,6 +32,22 @@
                 <Setter Property="HorizontalTextAlignment"  Value="Center"/>
                 <Setter Property="FontSize" Value="Header"/>
             </Style>
+
+            <Style x:Key="Add Button" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource EvanTeal}" />
+                <Setter Property="HorizontalOptions"  Value="Center"/>
+                <Setter Property="FontSize" Value="Medium"/>
+            </Style>
+
+            <Style x:Key="MobileMargining" TargetType="ContentPage">
+                <Setter Property="Padding" Value="{OnPlatform iOS=50, Android=50, WinUI=20}"></Setter>
+            </Style>
+                        <!-- <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{OnPlatform iOS=Blue, Android=Green, WinUI=Red}" />
+                <Setter Property="CornerRadius" Value="{OnPlatform iOS=20, Android=5, WinUI=0}" />
+                <Setter Property="Scale" Value="{OnPlatform Default=1.0, iOS=0.8}" />
+            </Style> -->
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
