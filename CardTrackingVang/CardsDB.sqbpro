@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="CardsDB.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="1"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1125"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Card" custom_title="0" dock_id="1" table="4,4:mainCard"/><dock_state state="000000ff00000000fd00000001000000020000047b000002dcfc0100000001fb000000160064006f0063006b00420072006f007700730065003101000000000000047b0000012300ffffff000002690000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Card" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="35"/><column index="2" value="35"/><column index="3" value="39"/><column index="4" value="75"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="CardType" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="35"/><column index="2" value="167"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1*">-- 1: Sport Cards
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('1952 Mickey Mantle #311', 5200000, 1);
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('2003 LeBron James Rookie Parallel', 150.50, 1);
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('Tom Brady Autograph - New England', 1200.00, 1);
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('Shohei Ohtani Topps Chrome', 45.00, 1);
+
+-- 2: Pokemon Cards
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('Charizard 1st Edition Shadowless', 35000.00, 2);
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('Umbreon VMAX Alternate Art', 650.00, 2);
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('Pikachu Illustrator Copy', 900.00, 2);
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('Gengar VMAX (Fusion Strike)', 180.25, 2);
+
+-- 3: Digimon Cards
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('Omnimon (Parallel Rare)', 85.00, 3);
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('Beelzemon: Blast Mode', 45.50, 3);
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('Alphamon Alternate Art', 110.00, 3);
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('Agumon Ghost Rare', 250.00, 3);
+
+-- 4: Yu-Gi-Oh! Cards
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('Blue-Eyes White Dragon (LOB-001)', 1500.00, 4);
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('Dark Magician Girl (Ghost Rare)', 420.00, 4);
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('Exodia the Forbidden One (Full Set)', 200.00, 4);
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('Pot of Greed (Ultimate Rare)', 95.00, 4);
+
+-- 5: Magic: The Gathering Cards
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('Black Lotus (Alpha)', 500000.00, 5);
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('The One Ring (Serialized)', 2000000.00, 5);
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('Mox Emerald', 8500.00, 5);
+INSERT INTO &quot;Card&quot; (&quot;Title&quot;, &quot;Value&quot;, &quot;CardTypeID&quot;) VALUES ('Sheoldred, The Apocalypse', 75.00, 5);</sql><current_tab id="0"/></tab_sql></sqlb_project>

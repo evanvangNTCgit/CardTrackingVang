@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using CardTrackingVang.DataAccess;
 
 namespace CardTrackingVang
 {
@@ -14,6 +15,13 @@ namespace CardTrackingVang
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
+            builder.Services.AddDbContext<DataContext>();
+            builder.Services.AddTransient<MainPage>();
+
+            var dbContext = new DataContext();
+            dbContext.Database.EnsureCreated();
+            dbContext.Dispose();
 
 #if DEBUG
     		builder.Logging.AddDebug();

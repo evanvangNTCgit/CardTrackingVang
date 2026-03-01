@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardTrackingVang", "CardTrackingVang.csproj", "{5B88E0C9-BAAC-D28D-3109-6D218C766449}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5B88E0C9-BAAC-D28D-3109-6D218C766449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B88E0C9-BAAC-D28D-3109-6D218C766449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B88E0C9-BAAC-D28D-3109-6D218C766449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B88E0C9-BAAC-D28D-3109-6D218C766449}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34C5DBEF-9F0D-4D09-A2E1-257A7546F259}
+	EndGlobalSection
+EndGlobal

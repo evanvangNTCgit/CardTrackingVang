@@ -8,6 +8,14 @@
     <ScrollView>
         <VerticalStackLayout>
             <Label x:Name="TitleLabel" Style="{StaticResource TitleLabelStyling}">!Welcome to Evan's Card Tracker!</Label>
+
+            <CollectionView x:Name="TestOutput">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Type}"></Label>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
 

@@ -2,11 +2,13 @@
 
 public class Card
 {
+    public int Id { get; set; }
+
     public required string Title { get; set; }
 
-    public string Description { get; set; } = string.Empty;
-
-    public DateTime? ObtainedDate { get; set; } = null;
-
     public decimal? Value { get; set; } = 0.00m;
+
+    public int CardTypeID { get; set; }
+
+    public CardType CardType { get; set; }
 }
