@@ -27,12 +27,12 @@ public partial class CardDetails : ContentPage
 		}
 	}
 
-	public string Value
+	public decimal Value
 	{
-		get => string.Format("{0:C}", this.value);
+		get => this.value;
 		set
 		{
-			this.value = decimal.Parse(value);
+			this.value = value;
 			OnPropertyChanged();
 		}
 	}
