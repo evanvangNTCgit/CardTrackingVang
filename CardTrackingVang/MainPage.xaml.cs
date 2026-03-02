@@ -4,6 +4,7 @@ using System.Linq;
 using CardTrackingVang.DataAccess;
 using CardTrackingVang.DataServices;
 using CardTrackingVang.Models;
+using CardTrackingVang.ViewModel;
 
 namespace CardTrackingVang
 {
@@ -11,6 +12,7 @@ namespace CardTrackingVang
     {
         private DataService _dataService;
         private readonly DataContext _dataContext;
+        private CardsListViewModel _cardListVM;
 
         public MainPage(DataContext dataContext)
         {
@@ -22,10 +24,15 @@ namespace CardTrackingVang
             // Checks if user does not have data first in this method
             this._dataService.EnsureSeedData();
 
-            // Bind the UI element to the current list of card types
-            this.TestOutput.ItemsSource = this._dataService.GetCardTypes();
+            this._cardListVM = new CardsListViewModel(this._dataService);
 
-            Console.WriteLine("HI!");
+            // Bind the UI element to the current list of card types
+            this.TestOutput.ItemsSource = this._cardListVM.Cards;
+        }
+
+        private void TestOutput_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

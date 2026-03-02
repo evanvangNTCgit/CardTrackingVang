@@ -25,6 +25,7 @@ namespace CardTrackingVang.ViewModel
             Cards = [];
             _dataService = ds;
 
+            this.RefreshCards();
             this.AddCardCommand = new Command<CardViewModel>(AddCard);
             this.RemoveCardCommand = new Command<int>(DeleteCard);
         }
@@ -65,9 +66,9 @@ namespace CardTrackingVang.ViewModel
         {
             IEnumerable<Card> cardsData = this._dataService.GetCards();
 
-            foreach(Card c in cardsData) 
+            this.Cards.Clear();
+            foreach (Card c in cardsData) 
             {
-                this.Cards.Clear();
                 // Make a viewModel for each of the cards now...
                 this.Cards.Add(new CardViewModel(c));
             }

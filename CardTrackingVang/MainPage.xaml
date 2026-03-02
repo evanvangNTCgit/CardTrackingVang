@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CardTrackingVang.MainPage"
+             xmlns:ViewModels ="clr-namespace:CardTrackingVang.ViewModel"
              Title="Evan's Card Tracker"
              Style="{StaticResource MobileMargining}">
 
@@ -9,12 +10,7 @@
         <VerticalStackLayout>
             <Label x:Name="TitleLabel" Style="{StaticResource TitleLabelStyling}">!Welcome to Evan's Card Tracker!</Label>
 
-            <CollectionView x:Name="TestOutput">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Label Text="{Binding Type}"></Label>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
+            <CollectionView x:Name="TestOutput" x:DataType="ViewModels:CardViewModel" ItemTemplate="{StaticResource CardItemTemplate}" SelectionMode="Single" SelectionChanged="TestOutput_SelectionChanged">
             </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
