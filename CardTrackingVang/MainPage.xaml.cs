@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using CardTrackingVang.DataAccess;
 using CardTrackingVang.DataServices;
@@ -28,11 +29,6 @@ namespace CardTrackingVang
 
             // Bind the UI element to the current list of card types
             this.TestOutput.ItemsSource = this._cardListVM.Cards;
-        }
-
-        private void TestOutput_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }
