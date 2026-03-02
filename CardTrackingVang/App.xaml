@@ -55,8 +55,8 @@
                     <HorizontalStackLayout.GestureRecognizers>
                         <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="TapGestureRecognizer_Tapped"/>
                     </HorizontalStackLayout.GestureRecognizers>
-                    <Label Text="{Binding Title}" FontAttributes="Bold" VerticalOptions="Center" />
-                    <Label Text="{Binding CardType.Type}" TextColor="Gray" VerticalOptions="Center" />
+                    <Label Text="{Binding Title}" FontAttributes="Bold" VerticalOptions="Center" BackgroundColor="{StaticResource EvanYellow}" Padding="5"/>
+                    <Label Text="{Binding CardType.Type}" TextColor="Black" VerticalOptions="Center" BackgroundColor="{StaticResource EvanTeal}" Padding="5"/>
                 </HorizontalStackLayout>
             </DataTemplate>
         </ResourceDictionary>

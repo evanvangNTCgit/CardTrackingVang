@@ -13,10 +13,13 @@
     please let me know if this is a bad mindset.
     -->
     <VerticalStackLayout>
-        <Grid RowDefinitions="*,*,*">
-            <Label Grid.Row="0" Text="{Binding Title}"/>
-            <Label Grid.Row="1" Text="{Binding Value, Converter={StaticResource currencyBinding}}"/>
-            <Label Grid.Row="2" Text="{Binding CardType}"/>
+        <Grid RowDefinitions="*,*,*" ColumnDefinitions="auto, auto" HorizontalOptions="Center">
+            <Label Grid.Row="0" Grid.Column="0" Text="Title:" Padding="10"></Label>
+            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Title}" Padding="10"/>
+            <Label Grid.Row="1" Grid.Column="0" Text="Declared Value:" Padding="10"></Label>
+            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Value, Converter={StaticResource currencyBinding}}" Padding="10"/>
+            <Label Grid.Row="2" Grid.Column="0" Text="Card Type:" Padding="10"></Label>
+            <Label Grid.Row="2" Grid.Column="1" Text="{Binding CardType}" Padding="10"/>
         </Grid>
     </VerticalStackLayout>
 </ContentPage>

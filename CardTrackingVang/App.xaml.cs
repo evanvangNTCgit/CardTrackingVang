@@ -18,8 +18,6 @@ namespace CardTrackingVang
         {
             var layout = sender as BindableObject;
             var currentCard = layout?.BindingContext as CardViewModel;
-
-            string cleanValue = currentCard.Value.ToString();
             if (currentCard != null)
             {
                 await Shell.Current.GoToAsync("CardDetails", new Dictionary<string, object>

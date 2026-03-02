@@ -2,10 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CardTrackingVang.CardHandling"
+                          xmlns:ViewModels ="clr-namespace:CardTrackingVang.ViewModel"
              Title="CardHandling">
     <VerticalStackLayout>
         <Label Style="{StaticResource TitleLabelStyling}">Add or Delete your Cards</Label>
-
+        <CollectionView x:Name="TestOutput" x:DataType="ViewModels:CardViewModel" ItemTemplate="{StaticResource CardItemTemplate}">
+        </CollectionView>
         <Button x:Name="AddCardBtn" Style="{StaticResource Add Button}" Text="Add a card" Clicked="AddCardBtn_Clicked"/>
     </VerticalStackLayout>
 </ContentPage>

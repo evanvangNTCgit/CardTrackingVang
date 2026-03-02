@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
-using CardTrackingVang.DataAccess;
+﻿using CardTrackingVang.DataAccess;
+using CardTrackingVang.DataServices;
+using CardTrackingVang.ViewModel;
+using Microsoft.Extensions.Logging;
 
 namespace CardTrackingVang
 {
@@ -17,7 +19,10 @@ namespace CardTrackingVang
                 });
 
             builder.Services.AddDbContext<DataContext>();
+            builder.Services.AddSingleton<DataService>(); // Pages should likely use only on Service
+            builder.Services.AddSingleton<CardsListViewModel>(); // Also decided for pages to share one list view model.
             builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<CardHandling>();
 
             var dbContext = new DataContext();
             dbContext.Database.EnsureCreated();
