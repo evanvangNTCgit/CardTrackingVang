@@ -6,7 +6,7 @@ public class Card
 
     public required string Title { get; set; }
 
-    public decimal? Value { get; set; } = 0.00m;
+    public decimal Value { get; set; } = 0.00m;
 
     public int CardTypeID { get; set; }
 
