@@ -55,7 +55,7 @@
             <DataTemplate x:Key="CardItemTemplate" x:DataType="ViewModels:CardViewModel">
                 <HorizontalStackLayout Spacing="10" Padding="10">
                     <HorizontalStackLayout.GestureRecognizers>
-                        <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="TapGestureRecognizer_Tapped"/>
+                        <TapGestureRecognizer NumberOfTapsRequired="{OnPlatform WinUI=1, Android=2}" Tapped="TapGestureRecognizer_Tapped"/>
                     </HorizontalStackLayout.GestureRecognizers>
                     <Label Text="{Binding Title}" FontAttributes="Bold" VerticalOptions="Center" BackgroundColor="{StaticResource EvanYellow}" Padding="5"/>
                     <Label Text="{Binding CardType.Type}" TextColor="Black" VerticalOptions="Center" BackgroundColor="{StaticResource EvanTeal}" Padding="5"/>
@@ -66,7 +66,10 @@
             <!-- https://stackoverflow.com/questions/75471886/net-maui-how-to-make-a-proper-gridlayout-in-collectionview-with-header -->
             <DataTemplate x:Key="CardsListHomeTemplate" 
               x:DataType="ViewModels:CardViewModel">
-
+                <VerticalStackLayout>
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="{OnPlatform WinUI=1, Android=2}" Tapped="TapGestureRecognizer_Tapped"/>
+                    </VerticalStackLayout.GestureRecognizers>
                 <Border Stroke="#E0E0E0"
             StrokeThickness="1"
             BackgroundColor="{StaticResource EvanRed}"
@@ -76,14 +79,15 @@
             HeightRequest="300"
             WidthRequest="160">
 
-                    <Grid RowDefinitions="*,auto,auto,auto">
-                        <Image Grid.Row="0" Source="{Binding GetCardImage}" BackgroundColor="{StaticResource EvanYellow}" HeightRequest="{OnPlatform Android=175}" WidthRequest="{OnPlatform Android=150}"></Image>
+                        <Grid RowDefinitions="*,auto,auto,auto">
+                            <Image Grid.Row="0" Source="{Binding GetCardImage}" BackgroundColor="{StaticResource EvanYellow}" HeightRequest="{OnPlatform Android=175}" WidthRequest="{OnPlatform Android=150}"></Image>
 
-                        <Label Grid.Row="1" Text="{Binding Title}"></Label>
-                        <Label Grid.Row="2" Text="{Binding Value, Converter={StaticResource CurrencyConversion}}"></Label>
-                        <Label Grid.Row="3" Text="{Binding CardType.Type}"></Label>
-                    </Grid>
-                </Border>
+                            <Label Grid.Row="1" Text="{Binding Title}"></Label>
+                            <Label Grid.Row="2" Text="{Binding Value, Converter={StaticResource CurrencyConversion}}"></Label>
+                            <Label Grid.Row="3" Text="{Binding CardType.Type}"></Label>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
