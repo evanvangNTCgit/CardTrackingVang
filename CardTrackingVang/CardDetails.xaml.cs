@@ -68,10 +68,21 @@ public partial class CardDetails : ContentPage
     {
 		try
 		{
-			this._cardListViewModel.DeleteCard(this.CardId);
+			bool answer = await DisplayAlertAsync("ALERT",
+				$"Are you sure you want to delete the card '{this.Title}' of type '{this.CardType}'?",
+				"Yes",
+				"No");
 
-			await Shell.Current.DisplayAlertAsync("Success", "Card deleted successfully.", "OK");
-			await Shell.Current.GoToAsync("..");
+			if (answer) 
+			{
+                this._cardListViewModel.DeleteCard(this.CardId);
+
+                await Shell.Current.DisplayAlertAsync("Success", "Card deleted successfully.", "OK");
+                await Shell.Current.GoToAsync("..");
+            } else
+			{
+                await Shell.Current.DisplayAlertAsync("ALERT", "Card deletion has been canceled.", "OK");
+            }
         }
 		catch
 		{

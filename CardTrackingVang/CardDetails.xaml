@@ -8,11 +8,6 @@
     <ContentPage.Resources>
         <CurrencyConversionBind:CurrencyConversion x:Key="currencyBinding"/>
     </ContentPage.Resources>
-    <!-- 
-    Since I know there is only one page that will use a card grid resouce,
-    I think it would be fine to make all my stlying here
-    please let me know if this is a bad mindset.
-    -->
     <VerticalStackLayout>
         <Grid RowDefinitions="*,*,*" ColumnDefinitions="auto, auto" HorizontalOptions="Center">
             <Label Grid.Row="0" Grid.Column="0" Text="Title:" Padding="10"></Label>

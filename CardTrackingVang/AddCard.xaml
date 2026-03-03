@@ -4,12 +4,20 @@
              x:Class="CardTrackingVang.AddCard"
              Title="AddCard">
     <ScrollView>
+        <!-- 
+    Since I know there is only one page that will use a card grid resouce,
+    I think it would be fine to make all my stlying here
+    please let me know if this is a bad mindset.
+    -->
         <VerticalStackLayout Spacing="20" Padding="30">
 
-            <Label Text="Card Details" 
-                   FontSize="24" 
+            <Label Text="Add Card" 
+                   FontSize="Header" 
                    FontAttributes="Bold" 
-                   TextColor="{StaticResource Primary}"/>
+                   TextColor="{StaticResource EvanBlack}"
+                   BackgroundColor="{StaticResource EvanTeal}"
+                   Padding="5"
+                   HorizontalOptions="Center"/>
 
             <VerticalStackLayout Spacing="5">
                 <Label Text="Card Name / Title" FontAttributes="Bold" />
@@ -25,17 +33,21 @@
                        Keyboard="Numeric" />
             </VerticalStackLayout>
 
-            <Picker x:Name="CardTypePicker">
-                
-            </Picker>
+            <VerticalStackLayout>
+                <Label Text="Card Type" FontAttributes="Bold" />
+                <Picker x:Name="CardTypePicker">
+
+                </Picker>
+            </VerticalStackLayout>
 
             <Button Text="Add to Collection"
                     Clicked="OnAddCardClicked"
                     CornerRadius="10"
                     HeightRequest="50"
                     Margin="0,20,0,0"
-                    BackgroundColor="{StaticResource Primary}"
-                    TextColor="White" />
+                    BackgroundColor="{StaticResource EvanTeal}"
+                    TextColor="{StaticResource EvanBlack}" 
+                    FontSize="20"/>
 
         </VerticalStackLayout>
     </ScrollView>
