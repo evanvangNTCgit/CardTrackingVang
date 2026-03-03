@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Header ="clr-namespace:CardTrackingVang.Header"
+             x:Class="CardTrackingVang.Help"
+             Title="Help"
+             Style="{StaticResource MobileMargining}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="30">
+            <Header:HeaderApp />
+
+            <Label Text="Help and Documentation"
+                   FontSize="Header"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource EvanBlack}"
+                   BackgroundColor="{StaticResource EvanRed}"
+                   Padding="5"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Welcome to Evan's Card Tracker. Use this page to learn how to navigate the app and perform common tasks."
+                   FontSize="Medium"
+                   TextColor="{StaticResource EvanBlack}" />
+
+            <Border BackgroundColor="{StaticResource EvanWhite}" Padding="10">
+                <VerticalStackLayout>
+                    <Label Text="Viewing your collection" FontAttributes="Bold" BackgroundColor="{StaticResource EvanYellow}" Padding="5" />
+                    <Label Text="- The home page lists your cards. Tap a card to view details."
+                           TextColor="{StaticResource EvanBlack}" />
+                    <Label Text="- Use the header buttons to navigate to Add Card or Help pages."
+                           TextColor="{StaticResource EvanBlack}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="{StaticResource EvanWhite}" Padding="10">
+                <VerticalStackLayout>
+                    <Label Text="Adding a card" FontAttributes="Bold" BackgroundColor="{StaticResource EvanYellow}" Padding="5" />
+                    <Label Text="- Open 'Add Card', enter a title and value, choose a card type, then tap 'Add to Collection'."
+                           TextColor="{StaticResource EvanBlack}" />
+                    <Label Text="- Use numeric keyboard for value input."
+                           TextColor="{StaticResource EvanBlack}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="{StaticResource EvanWhite}" Padding="10">
+                <VerticalStackLayout>
+                    <Label Text="Editing and deleting" FontAttributes="Bold" BackgroundColor="{StaticResource EvanYellow}" Padding="5" />
+                    <Label Text="- In a card's details page you can edit the title or value."
+                           TextColor="{StaticResource EvanBlack}" />
+                    <Label Text="- Use the 'Delete Card' button to remove a card from your collection."
+                           TextColor="{StaticResource EvanBlack}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="{StaticResource EvanWhite}" Padding="10">
+                <VerticalStackLayout>
+                    <Label Text="Troubleshooting" FontAttributes="Bold" BackgroundColor="{StaticResource EvanYellow}" Padding="5" />
+                    <Label Text="- If a page appears empty, restart the app to ensure the local database is initialized."
+                           TextColor="{StaticResource EvanBlack}" />
+                    <Label Text="- Report issues on the project's GitHub repository."
+                           TextColor="{StaticResource EvanBlack}" />
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

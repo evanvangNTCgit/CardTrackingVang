@@ -12,6 +12,9 @@
         <Tab Title="Add Card">
             <ShellContent ContentTemplate="{DataTemplate local:AddCard}" Route="AddCard"/>
         </Tab>
+        <Tab Title="Help">
+            <ShellContent ContentTemplate="{DataTemplate local:Help}" Route="Help"/>
+        </Tab>
     </TabBar>
 
 </Shell>
