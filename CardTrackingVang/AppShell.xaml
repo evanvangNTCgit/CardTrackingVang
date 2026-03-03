@@ -6,13 +6,13 @@
     xmlns:local="clr-namespace:CardTrackingVang"
     Title="CardTrackingVang">
     <TabBar>
-        <Tab Title="Cards">
+        <Tab Title="Cards" Icon="plycard.png">
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage"/>
         </Tab>
-        <Tab Title="Add Card">
+        <Tab Title="Add Card" Icon="plusicon.png">
             <ShellContent ContentTemplate="{DataTemplate local:AddCard}" Route="AddCard"/>
         </Tab>
-        <Tab Title="Help">
+        <Tab Title="Help" Icon="questionmarkicon.png">
             <ShellContent ContentTemplate="{DataTemplate local:Help}" Route="Help"/>
         </Tab>
     </TabBar>
