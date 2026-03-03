@@ -3,6 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CardTrackingVang.AddCard"
              Title="AddCard">
-    <VerticalStackLayout>
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="30">
+
+            <Label Text="Card Details" 
+                   FontSize="24" 
+                   FontAttributes="Bold" 
+                   TextColor="{StaticResource Primary}"/>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Card Name / Title" FontAttributes="Bold" />
+                <Entry x:Name="TitleEntry" 
+                       Placeholder="e.g. Black Lotus" 
+                       BackgroundColor="#F0F0F0" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Market Value" FontAttributes="Bold" />
+                <Entry x:Name="ValueEntry" 
+                       Placeholder="0.00" 
+                       Keyboard="Numeric" />
+            </VerticalStackLayout>
+
+            <Picker x:Name="CardTypePicker">
+                
+            </Picker>
+
+            <Button Text="Add to Collection"
+                    Clicked="OnAddCardClicked"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    Margin="0,20,0,0"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

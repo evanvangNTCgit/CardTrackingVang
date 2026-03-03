@@ -24,7 +24,8 @@ namespace CardTrackingVang
                 {
                     { "title", currentCard.Title },
                     { "value", currentCard.Value },
-                    { "cardtype", currentCard.CardType.Type }
+                    { "cardtype", currentCard.CardType.Type },
+                    { "SelectedCardId", currentCard.Id }
                 });
             }
             else

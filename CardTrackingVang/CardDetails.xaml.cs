@@ -1,17 +1,25 @@
+using CardTrackingVang.ViewModel;
+
 namespace CardTrackingVang;
 
 [QueryProperty(nameof(Title), "title")]
 [QueryProperty(nameof(Value), "value")]
 [QueryProperty(nameof(CardType), "cardtype")]
+[QueryProperty(nameof(CardId), "SelectedCardId")]
 public partial class CardDetails : ContentPage
 {
     private string title;
 	private decimal value;
 	private string cardtype;
+	private int cardid;
 
-	public CardDetails()
+	private CardsListViewModel _cardListViewModel;
+
+	public CardDetails(CardsListViewModel clvm)
 	{
 		InitializeComponent();
+
+		this._cardListViewModel = clvm;
 
 		BindingContext = this;
 	}
@@ -46,4 +54,34 @@ public partial class CardDetails : ContentPage
 			OnPropertyChanged();
 		}
 	}
+    public int CardId
+    {
+        get => this.cardid;
+        set
+        {
+            this.cardid = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private async void DeleteCardBtn_Clicked(object sender, EventArgs e)
+    {
+		try
+		{
+			this._cardListViewModel.DeleteCard(this.CardId);
+
+			await Shell.Current.DisplayAlertAsync("Success", "Card deleted successfully.", "OK");
+			await Shell.Current.GoToAsync("..");
+        }
+		catch
+		{
+			// Failed to delete card.. 
+			// Likely already gone refresh and take user back.
+			this._cardListViewModel.RefreshCards();
+
+			// Then navigate back...
+			await Shell.Current.DisplayAlertAsync("ALERT", "Failed to delete card...\nLikely already gone\nRefreshing list", "OK");
+            await Shell.Current.GoToAsync("..");
+        }
+    }
 }

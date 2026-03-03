@@ -21,6 +21,8 @@ namespace CardTrackingVang
             builder.Services.AddDbContext<DataContext>();
             builder.Services.AddSingleton<DataService>(); // Pages should likely use only on Service
             builder.Services.AddSingleton<CardsListViewModel>(); // Also decided for pages to share one list view model.
+            builder.Services.AddTransient<CardDetails>();
+            builder.Services.AddTransient<AddCard>();
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<CardHandling>();
 
