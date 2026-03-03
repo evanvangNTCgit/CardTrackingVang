@@ -3,12 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CardTrackingVang.MainPage"
              xmlns:ViewModels ="clr-namespace:CardTrackingVang.ViewModel"
+             xmlns:Header ="clr-namespace:CardTrackingVang.Header"
              Title="Evan's Card Tracker"
-             Style="{StaticResource MobileMargining}">
+             Style="{StaticResource MobileMargining}"
+             >
 
     <ScrollView>
         <VerticalStackLayout>
-            <Label x:Name="TitleLabel" Style="{StaticResource TitleLabelStyling}">!Welcome to Evan's Card Tracker!</Label>
+            <Header:HeaderApp></Header:HeaderApp>
             <CollectionView x:Name="TestOutput" x:DataType="ViewModels:CardViewModel" ItemTemplate="{StaticResource CardsListHomeTemplate}">
             </CollectionView>
         </VerticalStackLayout>

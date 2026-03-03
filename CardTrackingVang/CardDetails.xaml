@@ -4,6 +4,7 @@
              x:Class="CardTrackingVang.CardDetails"
              xmlns:CurrencyConversionBind="clr-namespace:CardTrackingVang.Converter"
              Title="CardDetails"
+                          xmlns:Header ="clr-namespace:CardTrackingVang.Header"
              Style="{StaticResource MobileMargining}">
     <ContentPage.Resources>
         <CurrencyConversionBind:CurrencyConversion x:Key="currencyBinding"/>
@@ -22,6 +23,7 @@
         </Style>
     </ContentPage.Resources>
     <VerticalStackLayout>
+        <Header:HeaderApp></Header:HeaderApp>
         <Border>
         <HorizontalStackLayout>
             <Label  Text="Title:" Padding="10"></Label>

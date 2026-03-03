@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CardTrackingVang.AddCard"
              Title="AddCard"
+                                       xmlns:Header ="clr-namespace:CardTrackingVang.Header"
              Style="{StaticResource MobileMargining}">
     <ScrollView>
         <!-- 
@@ -23,6 +24,7 @@
             </Style>
         </ScrollView.Resources>
         <VerticalStackLayout Spacing="20" Padding="30">
+            <Header:HeaderApp></Header:HeaderApp>
 
             <Label Text="Add Card" 
                    FontSize="Header" 
