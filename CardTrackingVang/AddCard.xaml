@@ -2,40 +2,53 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CardTrackingVang.AddCard"
-             Title="AddCard">
+             Title="AddCard"
+             Style="{StaticResource MobileMargining}">
     <ScrollView>
         <!-- 
     Since I know there is only one page that will use a card grid resouce,
     I think it would be fine to make all my stlying here
     please let me know if this is a bad mindset.
     -->
+        <ScrollView.Resources>
+            <Style TargetType="Label" x:Name="AddCardLabels">
+                <Setter Property="BackgroundColor" Value="{StaticResource EvanYellow}"></Setter>
+                <Setter Property="FontSize" Value="Large"></Setter>
+                <Setter Property="Padding" Value="5"></Setter>
+                <Setter Property="HorizontalOptions" Value="Fill"></Setter>
+            </Style>
+            <Style TargetType="Entry" x:Name="AddCardEntries">
+                <Setter Property="BackgroundColor" Value="{StaticResource EvanRed}"></Setter>
+                <Setter Property="HeightRequest" Value="75"/>
+            </Style>
+        </ScrollView.Resources>
         <VerticalStackLayout Spacing="20" Padding="30">
 
             <Label Text="Add Card" 
                    FontSize="Header" 
                    FontAttributes="Bold" 
                    TextColor="{StaticResource EvanBlack}"
-                   BackgroundColor="{StaticResource EvanTeal}"
+                   BackgroundColor="{StaticResource EvanRed}"
                    Padding="5"
                    HorizontalOptions="Center"/>
 
             <VerticalStackLayout Spacing="5">
-                <Label Text="Card Name / Title" FontAttributes="Bold" />
+                <Label Text="Card Name / Title" />
                 <Entry x:Name="TitleEntry" 
-                       Placeholder="e.g. Black Lotus" 
-                       BackgroundColor="#F0F0F0" />
+                       Placeholder="e.g. Black Lotus" />
             </VerticalStackLayout>
 
             <VerticalStackLayout Spacing="5">
-                <Label Text="Market Value" FontAttributes="Bold" />
+                <Label Text="Market Value" />
                 <Entry x:Name="ValueEntry" 
                        Placeholder="0.00" 
                        Keyboard="Numeric" />
             </VerticalStackLayout>
 
             <VerticalStackLayout>
-                <Label Text="Card Type" FontAttributes="Bold" />
-                <Picker x:Name="CardTypePicker">
+                <Label Text="Card Type" />
+                <Picker x:Name="CardTypePicker"
+                        BackgroundColor="{StaticResource EvanRed}">
 
                 </Picker>
             </VerticalStackLayout>
@@ -45,7 +58,7 @@
                     CornerRadius="10"
                     HeightRequest="50"
                     Margin="0,20,0,0"
-                    BackgroundColor="{StaticResource EvanTeal}"
+                    BackgroundColor="{StaticResource EvanYellow}"
                     TextColor="{StaticResource EvanBlack}" 
                     FontSize="20"/>
 

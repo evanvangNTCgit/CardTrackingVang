@@ -92,5 +92,27 @@ namespace CardTrackingVang.ViewModel
         {
             return this._dataService.GetCardTypes();
         }
+
+        public void EditCardValue(int id, decimal newValue)
+        {
+            var cardToEdit = this._dataService.GetCards().FirstOrDefault(c => c.Id == id);
+            if (cardToEdit != null)
+            {
+                cardToEdit.Value = newValue;
+                this._dataService.UpdateCard(cardToEdit);
+                this.RefreshCards();
+            }
+        }
+
+        public void EditCardTitle(int id, string newTitle)
+        {
+            var cardToEdit = this._dataService.GetCards().FirstOrDefault(c => c.Id == id);
+            if (cardToEdit != null)
+            {
+                cardToEdit.Title = newTitle;
+                this._dataService.UpdateCard(cardToEdit);
+                this.RefreshCards();
+            }
+        }
     }
 }

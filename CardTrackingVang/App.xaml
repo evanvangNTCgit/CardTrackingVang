@@ -40,10 +40,15 @@
                 <Setter Property="HorizontalOptions"  Value="Center"/>
                 <Setter Property="FontSize" Value="Medium"/>
             </Style>
+            
+            <Style x:Key="Edit Button" TargetType="Button" BasedOn="{StaticResource Add Button}">
+                <Setter Property="BackgroundColor" Value="{StaticResource EvanRed}"></Setter>
+                <Setter Property="Margin" Value="10"></Setter>
+            </Style>
 
             <Style x:Key="MobileMargining" TargetType="ContentPage">
                 <Setter Property="Padding" Value="{OnPlatform iOS=0, Android=0, WinUI=20}"></Setter>
-                <Setter Property="BackgroundColor" Value="{StaticResource EvanWhite}"></Setter>
+                <Setter Property="BackgroundColor" Value="{StaticResource EvanBlack}"></Setter>
             </Style>
             <!-- <Style TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{OnPlatform iOS=Blue, Android=Green, WinUI=Red}" />
@@ -77,7 +82,7 @@
             Margin="10"
             Padding="10"
             HeightRequest="300"
-            WidthRequest="160">
+            WidthRequest="{OnPlatform iOS=175, WinUI=300}">
 
                         <Grid RowDefinitions="*,auto,auto,auto">
                             <Image Grid.Row="0" Source="{Binding GetCardImage}" BackgroundColor="{StaticResource EvanYellow}" HeightRequest="{OnPlatform Android=175}" WidthRequest="{OnPlatform Android=150}"></Image>

@@ -7,16 +7,47 @@
              Style="{StaticResource MobileMargining}">
     <ContentPage.Resources>
         <CurrencyConversionBind:CurrencyConversion x:Key="currencyBinding"/>
+
+        <Style x:Name="CardDetailsLabels" TargetType="Label">
+            <Setter Property="FontSize" Value="Large"></Setter>
+            <Setter Property="BackgroundColor" Value="{StaticResource EvanYellow}"></Setter>
+        </Style>
+        <Style x:Name="CardDetailsHorizontalLayouts" TargetType="HorizontalStackLayout">
+            <Setter Property="HorizontalOptions" Value="Center"></Setter>
+        </Style>
+        <Style x:Name="CardDetailsBorder" TargetType="Border">
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Padding" Value="10"></Setter>
+            <Setter Property="BackgroundColor" Value="{StaticResource EvanWhite}"></Setter>
+        </Style>
     </ContentPage.Resources>
     <VerticalStackLayout>
-        <Grid RowDefinitions="*,*,*" ColumnDefinitions="auto, auto" HorizontalOptions="Center">
-            <Label Grid.Row="0" Grid.Column="0" Text="Title:" Padding="10"></Label>
-            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Title}" Padding="10"/>
-            <Label Grid.Row="1" Grid.Column="0" Text="Declared Value:" Padding="10"></Label>
-            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Value, Converter={StaticResource currencyBinding}}" Padding="10"/>
-            <Label Grid.Row="2" Grid.Column="0" Text="Card Type:" Padding="10"></Label>
-            <Label Grid.Row="2" Grid.Column="1" Text="{Binding CardType}" Padding="10"/>
-        </Grid>
+        <Border>
+        <HorizontalStackLayout>
+            <Label  Text="Title:" Padding="10"></Label>
+            <Label  Text="{Binding Title}" Padding="10"/>
+            <Button x:Name="EditTitleBtn" Text="Edit Title" Padding="10" Style="{StaticResource Edit Button}" Clicked="EditTitleBtn_Clicked"></Button>
+        </HorizontalStackLayout>
+        </Border>
+
+        <Border>
+        <HorizontalStackLayout>
+            <Label Text="Declared Value:" Padding="10"></Label>
+            <Label  Text="{Binding Value, Converter={StaticResource currencyBinding}}" Padding="10"/>
+                <Button x:Name="EditValueBtn" Text="Edit Value" Padding="10" Style="{StaticResource Edit Button}" Clicked="EditValueBtn_Clicked"></Button>
+        </HorizontalStackLayout>
+        </Border>
+
+        <Border>
+        <HorizontalStackLayout>
+            <Label Text="Card Type:" Padding="10"></Label>
+            <Label Text="{Binding CardType}" Padding="10"/>
+                <Button x:Name="EditTypeBtn" Text="Edit Type" Padding="10" Style="{StaticResource Edit Button}"></Button>
+        </HorizontalStackLayout>
+        </Border>
+
+        <Border>
         <Button Style="{StaticResource Add Button}" BackgroundColor="{StaticResource EvanRed}" Text="Delete Card" x:Name="DeleteCardBtn" Clicked="DeleteCardBtn_Clicked"></Button>
-    </VerticalStackLayout>
+        </Border>
+        </VerticalStackLayout>
 </ContentPage>

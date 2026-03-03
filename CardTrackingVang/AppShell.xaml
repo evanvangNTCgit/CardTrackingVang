@@ -9,8 +9,8 @@
         <Tab Title="Cards">
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage"/>
         </Tab>
-        <Tab Title="Card Management">
-            <ShellContent ContentTemplate="{DataTemplate local:CardHandling}" Route="CardHandling"/>
+        <Tab Title="Add Card">
+            <ShellContent ContentTemplate="{DataTemplate local:AddCard}" Route="AddCard"/>
         </Tab>
     </TabBar>
 

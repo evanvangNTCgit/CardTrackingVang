@@ -11,7 +11,7 @@ namespace CardTrackingVang.DataServices
     public class DataService
     {
         private readonly DataContext _dataContext;
-        public DataService(DataContext dc) 
+        public DataService(DataContext dc)
         {
             this._dataContext = dc;
         }
@@ -69,31 +69,31 @@ namespace CardTrackingVang.DataServices
             }
         }
 
-        public List<CardType> GetCardTypes() 
+        public List<CardType> GetCardTypes()
         {
             return this._dataContext.CardType.ToList();
         }
 
-        public List<Card> GetCards() 
+        public List<Card> GetCards()
         {
             return this._dataContext.Card
                 .Include(c => c.CardType)
                 .ToList();
         }
 
-        public void AddCard(Card card) 
+        public void AddCard(Card card)
         {
             this._dataContext.Add(card);
             this._dataContext.SaveChanges();
         }
 
-        public void AddCardType(CardType ct) 
+        public void AddCardType(CardType ct)
         {
             this._dataContext.Add(ct);
             this._dataContext.SaveChanges();
         }
 
-        public void RemoveCard(int id) 
+        public void RemoveCard(int id)
         {
             try
             {
@@ -101,25 +101,16 @@ namespace CardTrackingVang.DataServices
                 this._dataContext.Remove(cardGettingRemoved);
                 this._dataContext.SaveChanges();
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
                 // Just dont delete the card..
             }
         }
 
-        public void RemoveCardType(int id) 
+        public void UpdateCard(Card c) 
         {
-            try
-            {
-                var cardTypeGettingRemoved = this._dataContext.CardType.FirstOrDefault(ct => ct.Id == id);
-
-                this._dataContext.Remove(cardTypeGettingRemoved);
-                this._dataContext.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                // Just dont delete the cardType..
-            }
+            this._dataContext.Card.Update(c);
+            this._dataContext.SaveChanges();
         }
     }
 }
