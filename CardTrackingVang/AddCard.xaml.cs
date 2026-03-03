@@ -24,6 +24,22 @@ public partial class AddCard : ContentPage
     {
         try
         {
+            // Hold on lets check if user already added the card and verify if the duplication is intentional.
+            var existingCard = this._cardListViewModel.Cards.FirstOrDefault(c => c.Title == this.TitleEntry.Text && c.CardTypeID == this._cardTypes.First(ct => ct.Type == this.CardTypePicker.SelectedItem.ToString()).Id);
+            if (existingCard != null)
+            {
+                bool answer = await DisplayAlertAsync("ALERT",
+                    $"A card with the title '{existingCard.Title}' and type '{this.CardTypePicker.SelectedItem}' already exists. Do you want to add another one?",
+                    "Yes",
+                    "No");
+
+                if (!answer)
+                {
+                    // Take the user back...
+                    await Shell.Current.GoToAsync("..");
+                }
+            }
+
             // Make the card model...
             var cardGettingAdded = new Card
             {
