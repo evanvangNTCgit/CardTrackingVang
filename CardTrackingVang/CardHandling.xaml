@@ -8,7 +8,7 @@
     <ScrollView>
     <VerticalStackLayout>
         <Label Style="{StaticResource TitleLabelStyling}">Add or Delete your Cards</Label>
-            <Button x:Name="AddCardBtn" Style="{StaticResource Add Button}" Text="Add a card" Clicked="AddCardBtn_Clicked"/>
+            <Button x:Name="AddCardBtn" Style="{StaticResource Add Button}" Margin="10" Text="Add a card" Clicked="AddCardBtn_Clicked"/>
             <CollectionView x:Name="TestOutput" x:DataType="ViewModels:CardViewModel" ItemTemplate="{StaticResource CardItemTemplate}">
             </CollectionView>
         </VerticalStackLayout>

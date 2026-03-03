@@ -77,7 +77,7 @@
             WidthRequest="160">
 
                     <Grid RowDefinitions="*,auto,auto,auto">
-                        <Image Grid.Row="0" Source="{Binding GetCardImage}" BackgroundColor="{StaticResource EvanYellow}"></Image>
+                        <Image Grid.Row="0" Source="{Binding GetCardImage}" BackgroundColor="{StaticResource EvanYellow}" HeightRequest="{OnPlatform Android=175}" WidthRequest="{OnPlatform Android=150}"></Image>
 
                         <Label Grid.Row="1" Text="{Binding Title}"></Label>
                         <Label Grid.Row="2" Text="{Binding Value, Converter={StaticResource CurrencyConversion}}"></Label>
