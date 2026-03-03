@@ -1,7 +1,4 @@
-using CardTrackingVang.DataAccess;
-using CardTrackingVang.DataServices;
 using CardTrackingVang.ViewModel;
-using System.Runtime.CompilerServices;
 
 namespace CardTrackingVang;
 
@@ -21,6 +18,6 @@ public partial class CardHandling : ContentPage
     private async void AddCardBtn_Clicked(object sender, EventArgs e)
     {
 		// Navigate to add card page.
-		await DisplayAlertAsync("Add card", "Implementing add page soon", "OK");
+		await Shell.Current.GoToAsync("AddCard");
     }
 }

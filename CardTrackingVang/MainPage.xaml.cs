@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using CardTrackingVang.DataAccess;
-using CardTrackingVang.DataServices;
-using CardTrackingVang.Models;
-using CardTrackingVang.ViewModel;
+﻿using CardTrackingVang.ViewModel;
 
 namespace CardTrackingVang
 {

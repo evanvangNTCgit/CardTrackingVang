@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:CardTrackingVang"
              xmlns:ViewModels="clr-namespace:CardTrackingVang.ViewModel"
+             xmlns:CurrencyConversionBind="clr-namespace:CardTrackingVang.Converter"
              x:Class="CardTrackingVang.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -41,7 +42,8 @@
             </Style>
 
             <Style x:Key="MobileMargining" TargetType="ContentPage">
-                <Setter Property="Padding" Value="{OnPlatform iOS=50, Android=50, WinUI=20}"></Setter>
+                <Setter Property="Padding" Value="{OnPlatform iOS=0, Android=0, WinUI=20}"></Setter>
+                <Setter Property="BackgroundColor" Value="{StaticResource EvanWhite}"></Setter>
             </Style>
             <!-- <Style TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{OnPlatform iOS=Blue, Android=Green, WinUI=Red}" />
@@ -58,6 +60,30 @@
                     <Label Text="{Binding Title}" FontAttributes="Bold" VerticalOptions="Center" BackgroundColor="{StaticResource EvanYellow}" Padding="5"/>
                     <Label Text="{Binding CardType.Type}" TextColor="Black" VerticalOptions="Center" BackgroundColor="{StaticResource EvanTeal}" Padding="5"/>
                 </HorizontalStackLayout>
+            </DataTemplate>
+
+            <CurrencyConversionBind:CurrencyConversion x:Key="CurrencyConversion"></CurrencyConversionBind:CurrencyConversion>
+            <!-- https://stackoverflow.com/questions/75471886/net-maui-how-to-make-a-proper-gridlayout-in-collectionview-with-header -->
+            <DataTemplate x:Key="CardsListHomeTemplate" 
+              x:DataType="ViewModels:CardViewModel">
+
+                <Border Stroke="#E0E0E0"
+            StrokeThickness="1"
+            BackgroundColor="{StaticResource EvanRed}"
+            StrokeShape="RoundRectangle 10"
+            Margin="10"
+            Padding="10"
+            HeightRequest="300"
+            WidthRequest="160">
+
+                    <Grid RowDefinitions="*,auto,auto,auto">
+                        <Image Grid.Row="0" Source="{Binding GetCardImage}" BackgroundColor="{StaticResource EvanYellow}"></Image>
+
+                        <Label Grid.Row="1" Text="{Binding Title}"></Label>
+                        <Label Grid.Row="2" Text="{Binding Value, Converter={StaticResource CurrencyConversion}}"></Label>
+                        <Label Grid.Row="3" Text="{Binding CardType.Type}"></Label>
+                    </Grid>
+                </Border>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

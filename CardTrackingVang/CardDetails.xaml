@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CardTrackingVang.CardDetails"
              xmlns:CurrencyConversionBind="clr-namespace:CardTrackingVang.Converter"
-             Title="CardDetails">
+             Title="CardDetails"
+             Style="{StaticResource MobileMargining}">
     <ContentPage.Resources>
         <CurrencyConversionBind:CurrencyConversion x:Key="currencyBinding"/>
     </ContentPage.Resources>

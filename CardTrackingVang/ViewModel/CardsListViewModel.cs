@@ -25,6 +25,8 @@ namespace CardTrackingVang.ViewModel
             Cards = [];
             _dataService = ds;
 
+            this._dataService.EnsureSeedData();
+
             this.RefreshCards();
             this.AddCardCommand = new Command<CardViewModel>(AddCard);
             this.RemoveCardCommand = new Command<int>(DeleteCard);

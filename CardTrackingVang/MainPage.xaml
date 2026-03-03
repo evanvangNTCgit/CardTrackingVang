@@ -9,7 +9,7 @@
     <ScrollView>
         <VerticalStackLayout>
             <Label x:Name="TitleLabel" Style="{StaticResource TitleLabelStyling}">!Welcome to Evan's Card Tracker!</Label>
-            <CollectionView x:Name="TestOutput" x:DataType="ViewModels:CardViewModel" ItemTemplate="{StaticResource CardItemTemplate}">
+            <CollectionView x:Name="TestOutput" x:DataType="ViewModels:CardViewModel" ItemTemplate="{StaticResource CardsListHomeTemplate}">
             </CollectionView>
         </VerticalStackLayout>
     </ScrollView>

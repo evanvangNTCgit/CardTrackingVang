@@ -77,6 +77,29 @@ namespace CardTrackingVang.ViewModel
             }
         }
 
+        // Gets an image based on the cardtype.
+        public ImageSource GetCardImage
+        {
+            get
+            {
+                switch (this.CardType.Type) 
+                {
+                    case ("Sport"):
+                        return ImageSource.FromFile("runningicon.png");
+                    case ("Pokemon"):
+                        return ImageSource.FromFile("pikapi.png");
+                    case ("Digimon"):
+                        return ImageSource.FromFile("digimonlogo.png");
+                    case ("Yu-Gi-Oh!"):
+                        return ImageSource.FromFile("yugioh.png");
+                    case ("Magic: The Gathering"):
+                        return ImageSource.FromFile("magicgatheringlogo.png");
+                    default:
+                        return ImageSource.FromFile("dotnet_bot.png");
+                }
+            }
+        }
+
         // https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifypropertychanged?view=net-10.0
         // This method is called by the Set accessor of each property.
         // The CallerMemberName attribute that is applied to the optional propertyName
