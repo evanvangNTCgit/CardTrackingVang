@@ -21,69 +21,59 @@ namespace CardTrackingVang.AiServices
             };
         }
 
-        public async Task<string> AnalyzeImageAsync(Stream imageStream) 
+        public async Task<string> AnalyzeImageAsync(Stream imageStream)
         {
             try
             {
                 var features = new List<VisualFeatureTypes?>
-            {
-                VisualFeatureTypes.Categories,
-                VisualFeatureTypes.Description,
-                VisualFeatureTypes.Faces,
-                VisualFeatureTypes.Brands,
-                VisualFeatureTypes.Objects,
-            };
+                {
+                    VisualFeatureTypes.Objects,
+                    VisualFeatureTypes.Tags,
+                    VisualFeatureTypes.Color,
+                    VisualFeatureTypes.Description,
+                    VisualFeatureTypes.Faces,
+                };
 
                 var result = await _client.AnalyzeImageInStreamAsync(imageStream, features);
 
                 StringBuilder sb = new();
 
-                if(result.Description?.Captions.Count > 0) 
+                if (result.Description?.Captions.Count > 0)
                 {
-                    sb.AppendLine("Tags: ");
-                    foreach(var tag in result.Tags.OrderByDescending(t => t.Confidence)) 
+                    sb.AppendLine("Captions:");
+                    foreach (var caption in result.Description.Captions)
                     {
-                        sb.AppendLine($"{tag.Name}\nConfidence{tag.Confidence}\n----------------------------");
+                        sb.AppendLine($"{caption.Text} (Confidence: {caption.Confidence:P2})");
                     }
                     sb.AppendLine();
                 }
 
-                if(result.Objects.Count > 0) 
+                if (result.Tags?.Count > 0)
                 {
-                    sb.AppendLine("Objects: ");
-                    foreach(var obj in result.Objects.OrderByDescending(o => o.Confidence)) 
+                    sb.AppendLine("Tags:");
+                    foreach (var tag in result.Tags.OrderByDescending(t => t.Confidence))
                     {
-                        sb.AppendLine($"{obj.ObjectProperty}\nConfidence{obj.Confidence}\n----------------------------");
+                        sb.AppendLine($"{tag.Name} (Confidence: {tag.Confidence:P2})");
                     }
                     sb.AppendLine();
                 }
 
-                if (result.Categories.Count > 0) 
+                if (result.Objects?.Count > 0)
                 {
-                    sb.AppendLine("Categories: ");
-                    foreach (var obj in result.Categories)
+                    sb.AppendLine("Objects:");
+                    foreach (var obj in result.Objects.OrderByDescending(o => o.Confidence))
                     {
-                        sb.AppendLine($"{obj.Name}\n----------------------------");
+                        sb.AppendLine($"{obj.ObjectProperty} (Confidence: {obj.Confidence:P2})");
                     }
                     sb.AppendLine();
                 }
 
-                if (result.Faces.Count > 0)
+                if (result.Faces?.Count > 0)
                 {
-                    sb.AppendLine("Faces: ");
-                    foreach (var obj in result.Faces)
+                    sb.AppendLine("Faces:");
+                    foreach (var face in result.Faces)
                     {
-                        sb.AppendLine($"Age: {obj.Age} Gender: {obj.Gender}\n----------------------------");
-                    }
-                    sb.AppendLine();
-                }
-
-                if (result.Brands.Count > 0)
-                {
-                    sb.AppendLine("Faces: ");
-                    foreach (var obj in result.Brands)
-                    {
-                        sb.AppendLine($"Age: {obj.Name} Confidence: {obj.Confidence}\n----------------------------");
+                        sb.AppendLine($"Age: {face.Age}, Gender: {face.Gender}");
                     }
                     sb.AppendLine();
                 }
@@ -93,6 +83,35 @@ namespace CardTrackingVang.AiServices
             catch
             {
                 throw new NotImplementedException();
+            }
+        }
+
+        public async Task<string> RecognizeTextAsync(Stream imageStream)
+        {
+            try
+            {
+                // Read text from image
+                var result = await _client.RecognizePrintedTextInStreamAsync(true, imageStream);
+
+                // Extract text
+                var sb = new StringBuilder();
+                sb.AppendLine("Extracted Text:");
+
+                foreach (var region in result.Regions)
+                {
+                    foreach (var line in region.Lines)
+                    {
+                        var lineText = string.Join(" ", line.Words.Select(w => w.Text));
+                        sb.AppendLine(lineText);
+                    }
+                    sb.AppendLine();
+                }
+
+                return sb.ToString();
+            }
+            catch (Exception ex)
+            {
+                return $"Error recognizing text: {ex.Message}";
             }
         }
     }

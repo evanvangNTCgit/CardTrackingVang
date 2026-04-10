@@ -47,6 +47,7 @@ namespace CardTrackingVang
                 SpeechServiceKey = builder.Configuration["SpeechServiceKey"]!
             };
             builder.Services.AddSingleton(Aiskeys);
+            builder.Services.AddSingleton(new ComputerVisionService(Aiskeys));
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
