@@ -82,7 +82,7 @@
             Margin="10"
             Padding="10"
             HeightRequest="300"
-            WidthRequest="{OnPlatform iOS=175, WinUI=300}">
+            WidthRequest="{OnPlatform Android=175, WinUI=300}">
 
                         <Grid RowDefinitions="*,auto,auto,auto">
                             <Image Grid.Row="0" Source="{Binding GetCardImage}" BackgroundColor="{StaticResource EvanYellow}" HeightRequest="{OnPlatform Android=175}" WidthRequest="{OnPlatform Android=150}"></Image>

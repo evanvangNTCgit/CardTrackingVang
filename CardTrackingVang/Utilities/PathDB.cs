@@ -22,7 +22,7 @@ public static class PathDB
         {
             pathDbSqlite = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             pathDbSqlite = Path.Combine(pathDbSqlite, nameDb);
-        }
+        } 
 
         return pathDbSqlite;
     }
