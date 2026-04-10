@@ -12,11 +12,14 @@
         <Tab Title="Add Card" Icon="plusicon.png">
             <ShellContent ContentTemplate="{DataTemplate local:AddCard}" Route="AddCard"/>
         </Tab>
+        <Tab Title="Analyze">
+            <ShellContent ContentTemplate="{DataTemplate local:AnalyzeCardImage}" Route="AnalyzeCard"/>
+        </Tab>
         <Tab Title="Help" Icon="questionmarkicon.png">
             <ShellContent ContentTemplate="{DataTemplate local:Help}" Route="Help"/>
         </Tab>
         <Tab Title="Preferences">
-            <ShellContent ContentTemplate="{DataTemplate local:UserPreferences}" Route="Help"/>
+            <ShellContent ContentTemplate="{DataTemplate local:UserPreferences}" Route="Preferences"/>
         </Tab>
     </TabBar>
 

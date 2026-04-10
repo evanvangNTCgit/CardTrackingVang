@@ -22,18 +22,28 @@ namespace CardTrackingVang
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-
-            var test = _keys.OpenAIEndpoint;
-            var testing = _keys.OpenAIKey;
-
-            try
+            if (string.IsNullOrEmpty(_keys.OpenAIEndpoint)) 
             {
-                LoadingUserPreferences.LoadPreferencesStartup();
+                await DisplayAlertAsync("ALERT", "You have no access to AI services on this app.", "OK");
             }
-            catch (Exception ex)
+
+            if (!LoadingUserPreferences.loadedStartup)
             {
-                await DisplayAlertAsync("ALERT", $"Failed to load a preference\n\n{ex.Message}\n\nPlease restart and try again or notify Mr.Vang", "OK");
+                try
+                {
+                    LoadingUserPreferences.LoadPreferencesStartup();
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlertAsync("ALERT", $"Failed to load a preference\n\n{ex.Message}\n\nPlease restart and try again or notify Mr.Vang", "OK");
+                }
+                finally
+                {
+                    LoadingUserPreferences.loadedStartup = true;
+                }
             }
+        
+
         }
     }
 }

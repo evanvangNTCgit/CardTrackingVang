@@ -2,8 +2,10 @@
 using CardTrackingVang.DataAccess;
 using CardTrackingVang.DataServices;
 using CardTrackingVang.ViewModel;
+using CommunityToolkit.Maui;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.Reflection;
 
 namespace CardTrackingVang
 {
@@ -13,13 +15,14 @@ namespace CardTrackingVang
         {
             var builder = MauiApp.CreateBuilder();
             builder
+                .UseMauiCommunityToolkitCamera()
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-            builder.Configuration.AddUserSecrets<AiKeys>();
+            //builder.Configuration.AddUserSecrets<AiKeys>();
             builder.Services.AddDbContext<DataContext>();
             builder.Services.AddSingleton<DataService>(); // Pages should likely use only on Service
             builder.Services.AddSingleton<CardsListViewModel>(); // Also decided for pages to share one list view model.
@@ -29,15 +32,9 @@ namespace CardTrackingVang
             builder.Services.AddTransient<CardHandling>();
 
             // Reading from secrets.json
-            //AiKeys.OpenAIEndpoint = builder.Configuration["OpenAiEndpoint"]!;
-            //AiKeys.OpenAIKey = builder.Configuration["OpenAiKey"]!;
-            //AiKeys.ComputerVisionEndpoint = builder.Configuration["ComputerVisionEndpoint"]!;
-            //AiKeys.ComputerVisionEndpoint = builder.Configuration["ComputerVisionEndpoint"]!;
-            //AiKeys.TextAnalyticsEndpoint = builder.Configuration["TextAnalyticsEndpoint"]!;
-            //AiKeys.TextAnalyticsKey = builder.Configuration["TextAnalyticsKey"]!;
-            //AiKeys.SpeechServiceEndpoint = builder.Configuration["SpeechServiceEndpoint"]!;
-            //AiKeys.SpeechServiceKey = builder.Configuration["SpeechServiceKey"]!;
-#if DEBUG
+            // CANNOT READ FROM SECRETS.JSON ON MOBILE.
+            // must do this instead.
+            builder.Configuration.AddJsonFile("appsettings.local.json");
             var Aiskeys = new AiKeys()
             {
                 OpenAIEndpoint = builder.Configuration["OpenAiEndpoint"]!,
@@ -50,7 +47,7 @@ namespace CardTrackingVang
                 SpeechServiceKey = builder.Configuration["SpeechServiceKey"]!
             };
             builder.Services.AddSingleton(Aiskeys);
-
+#if DEBUG
             builder.Logging.AddDebug();
 #endif
 

@@ -2,6 +2,8 @@
 {
     public static class LoadingUserPreferences
     {
+        public static bool loadedStartup = false;
+
         public static void setUserBgTheme(Color c)
         {
             try
