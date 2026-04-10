@@ -18,10 +18,6 @@
                    Padding="5"
                    HorizontalOptions="Center" />
 
-            <Label Text="Welcome to Evan's Card Tracker. Use this page to learn how to navigate the app and perform common tasks."
-                   FontSize="Medium"
-                   TextColor="{StaticResource EvanBlack}" />
-
             <Border BackgroundColor="{StaticResource EvanWhite}" Padding="10">
                 <VerticalStackLayout>
                     <Label Text="Viewing your collection" FontAttributes="Bold" BackgroundColor="{StaticResource EvanYellow}" Padding="5" />

@@ -26,10 +26,6 @@ namespace CardTrackingVang
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<CardHandling>();
 
-            var dbContext = new DataContext();
-            dbContext.Database.EnsureCreated();
-            dbContext.Dispose();
-
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif

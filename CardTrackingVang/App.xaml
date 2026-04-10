@@ -28,6 +28,9 @@
             <Color x:Key="EvanYellow">
                 #FF9F1C
             </Color>
+            <Color x:Key="UserBgColor">
+                #011627
+            </Color>
 
             <Style x:Key="TitleLabelStyling" TargetType="Label">
                 <Setter Property="BackgroundColor" Value="{StaticResource EvanRed}" />
@@ -48,7 +51,7 @@
 
             <Style x:Key="MobileMargining" TargetType="ContentPage">
                 <Setter Property="Padding" Value="{OnPlatform iOS=0, Android=0, WinUI=20}"></Setter>
-                <Setter Property="BackgroundColor" Value="{StaticResource EvanBlack}"></Setter>
+                <Setter Property="BackgroundColor" Value="{DynamicResource UserBgColor}"></Setter>
             </Style>
             <!-- <Style TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{OnPlatform iOS=Blue, Android=Green, WinUI=Red}" />
@@ -94,6 +97,14 @@
                     </Border>
                 </VerticalStackLayout>
             </DataTemplate>
+
+            <Style TargetType="VerticalStackLayout" x:Key="UserPrefVertStyling">
+                <Setter Property="BackgroundColor" Value="{StaticResource EvanWhite}"/>
+                <Setter Property="Margin" Value="10"/>
+            </Style>
+            <Style TargetType="Label" x:Key="UserPrefLabelHeading">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

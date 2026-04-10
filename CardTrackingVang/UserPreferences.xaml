@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Header ="clr-namespace:CardTrackingVang.Header"
+             x:Class="CardTrackingVang.UserPreferences"
+             Title="UserPreferences"
+             Style="{StaticResource MobileMargining}">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Header:HeaderApp></Header:HeaderApp>
+
+            <Label Text="User Prefrences"
+                   FontSize="Header"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource EvanBlack}"
+                   BackgroundColor="{StaticResource EvanRed}"
+                   Padding="5"
+                   HorizontalOptions="Center" />
+
+            <VerticalStackLayout Style="{StaticResource UserPrefVertStyling}">
+                <Label Text="Theme Toggle" Style="{StaticResource UserPrefLabelHeading}"></Label>
+                <Switch x:Name="UserThemeToggle" Toggled="UserThemeToggle_Toggled"></Switch>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
