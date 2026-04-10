@@ -1,24 +1,28 @@
 using CardTrackingVang.AiServices;
+using CardTrackingVang.DataServices;
+using CardTrackingVang.Models;
 using CardTrackingVang.ViewModel;
 using CommunityToolkit.Maui.Core;
-using CommunityToolkit.Maui.Views;
-using CommunityToolkit.Mvvm.ComponentModel;
-using System.Collections.ObjectModel;
-using System.Security.Cryptography;
+using System.ComponentModel;
 
 namespace CardTrackingVang;
 
-public partial class AnalyzeCardImage : ContentPage
+public partial class AnalyzeCardImage : ContentPage, INotifyPropertyChanged
 {
     private readonly ComputerVisionService _computerVisionService;
     private readonly ImageRecognitionViewModel _imageRecognitionViewModel;
-    public bool Loading = false;
-    public AnalyzeCardImage(ICameraProvider camProvider, ComputerVisionService cvs)
+    private readonly ChatService _client;
+    private readonly DataService _dataService;
+
+    public AnalyzeCardImage(ICameraProvider camProvider, ComputerVisionService cvs, ChatService cs, DataService ds)
 	{
         InitializeComponent();
+        this._client = cs;
         this._computerVisionService = cvs;
         this._imageRecognitionViewModel = new(cvs);
+        this._dataService = ds;
         this.BindingContext = this;
+        this.AiActivityIndicator.BindingContext = this._imageRecognitionViewModel;
     }
 
     protected override async void OnAppearing()
@@ -27,27 +31,30 @@ public partial class AnalyzeCardImage : ContentPage
 
         // Ask for camera permission:
         var cameraPermissionRequest = await Permissions.RequestAsync<Permissions.Camera>();
-
+        this.UserCamera.IsEnabled = true;
         if (cameraPermissionRequest != PermissionStatus.Granted)
         {
             await DisplayAlertAsync("ALERT", "Camera permissions are needed to use the AI image view.\nPlease allow camera permissions for this service", "OK");
         } 
         }
 
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+
+        this.UserCamera.IsEnabled = false;
+    }
+
     private async void Capture_Clicked(object sender, EventArgs e)
     {
         try
         {
-            this.Loading = true;
-
             var picStream = await this.UserCamera.CaptureImage(CancellationToken.None);
 
             if (picStream != null)
             {
-                //var ai = await this._computerVisionService.AnalyzeImageAsync(picStream);
-                // await DisplayAlertAsync("Info", $"{ai}", "OK");
-
-                await Task.Delay(10000);
+                var ai = await this._computerVisionService.AnalyzeImageAsync(picStream);
+                await DisplayAlertAsync("Info", $"{ai}", "OK");
             }
             else
             {
@@ -59,20 +66,43 @@ public partial class AnalyzeCardImage : ContentPage
         {
             await DisplayAlertAsync("ALERT", $"Error occured processing image please try again\n{ex.Message}", "OK");
         }
-        finally
-        {
-            this.Loading = false;
-        }
         }
 
     private async void SelectImageBTN_Clicked(object sender, EventArgs e)
     {
-        var result = await this._imageRecognitionViewModel.PickAndAnalyzeImage();
-        if (string.IsNullOrWhiteSpace(result))
+        try
         {
-            return;
-        }
+            var result = await this._imageRecognitionViewModel.PickAndAnalyzeImage();
+            if (string.IsNullOrWhiteSpace(result))
+            {
+                return;
+            }
 
-        Console.WriteLine(result);
+            // outputs something like: sample output: Title: Sprigatito, Value: 15.00, CardType: Pokemon
+            var cardThought = await this._client.MakeCardBasedOnText(result);
+            Card AiGenCard = this._client.TranslateAiToCard(cardThought);
+
+            if(AiGenCard != null) 
+            {
+               bool userWantsToAdd = await DisplayAlertAsync("SUCCESS", $"Card generated:\nTitle{AiGenCard.Title}\nValue: {AiGenCard.Value}\n\nWould you like to add this card?", "OK", "NO");
+
+                if (userWantsToAdd) 
+                {
+                    this._dataService.AddCard(AiGenCard);
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+        catch (FormatException) 
+        {
+            await DisplayAlertAsync("ALERT", "AI failed to recognize card, Please choose/take a better picture", "OK");
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlertAsync("ALERT", $"{ex.Message}", "OK");
+        }
     }
 }

@@ -74,6 +74,22 @@ namespace CardTrackingVang.DataServices
             return this._dataContext.CardType.ToList();
         }
 
+        public int GetCardTypeId(string s) 
+        {
+            var type = this._dataContext.CardType
+                .Where(c => c.Type == s)
+                .FirstOrDefault();
+
+            return type!.Id;
+        }
+
+        public CardType GetCardType(int id) 
+        {
+            return this._dataContext.CardType
+                .Where(c => c.Id == id)
+                .FirstOrDefault()!;
+        }
+
         public List<Card> GetCards()
         {
             return this._dataContext.Card

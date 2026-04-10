@@ -12,7 +12,16 @@
             Grid.ColumnSpan="3"
             Grid.Row="0" 
             MaximumHeightRequest="300"/>
+        
+        <ActivityIndicator
+            x:Name="AiActivityIndicator"
+            x:DataType="vm:ImageRecognitionViewModel"
+            IsEnabled="{Binding IsAnalyzing}"
+            IsVisible="{Binding IsAnalyzing}"
+            IsRunning="{Binding IsAnalyzing}"
+            Color="Red">
 
+            </ActivityIndicator>
         <Button x:Name="Capture" Text="Capture" Clicked="Capture_Clicked"></Button>
         <Button x:Name="SelectImageBTN" Text="Pick and Analyze Image" Clicked="SelectImageBTN_Clicked"></Button>
     </VerticalStackLayout>
