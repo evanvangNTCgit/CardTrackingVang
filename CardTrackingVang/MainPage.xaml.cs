@@ -1,14 +1,17 @@
-﻿using CardTrackingVang.ViewModel;
+﻿using CardTrackingVang.AiServices;
+using CardTrackingVang.ViewModel;
 
 namespace CardTrackingVang
 {
     public partial class MainPage : ContentPage
     {
         private CardsListViewModel _cardListVM;
+        private readonly AiKeys _keys;
 
-        public MainPage(CardsListViewModel cm)
+        public MainPage(CardsListViewModel cm, AiKeys a)
         {
             this._cardListVM = cm;
+            this._keys = a;
 
             InitializeComponent();
 
@@ -19,6 +22,9 @@ namespace CardTrackingVang
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+
+            var test = _keys.OpenAIEndpoint;
+            var testing = _keys.OpenAIKey;
 
             try
             {
