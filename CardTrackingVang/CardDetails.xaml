@@ -22,8 +22,15 @@
             <Setter Property="BackgroundColor" Value="{StaticResource EvanWhite}"></Setter>
         </Style>
     </ContentPage.Resources>
+    <ScrollView>
     <VerticalStackLayout>
         <Header:HeaderApp></Header:HeaderApp>
+
+        <Border>
+        <VerticalStackLayout HeightRequest="200" WidthRequest="200">
+            <Image x:Name="CardImage"></Image>
+        </VerticalStackLayout>
+        </Border>
         <Border>
         <VerticalStackLayout>
             <Label  Text="Title:" Padding="10"></Label>
@@ -50,4 +57,5 @@
         <Button Style="{StaticResource Add Button}" BackgroundColor="{StaticResource EvanRed}" Text="Delete Card" x:Name="DeleteCardBtn" Clicked="DeleteCardBtn_Clicked"></Button>
         </Border>
         </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

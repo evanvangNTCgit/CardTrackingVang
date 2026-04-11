@@ -73,6 +73,20 @@ namespace CardTrackingVang.ViewModel
             }
         }
 
+        public string CardImagePath
+        {
+            get {
+                if (this._card.CardImage == null || string.IsNullOrEmpty(this._card.CardImage.ImagePath))
+                {
+                    return string.Empty;
+                }
+                else
+                {
+                    return this._card.CardImage.ImagePath;
+                }
+            }
+        }
+
         public CardType CardType
         {
             get => this._cardType;

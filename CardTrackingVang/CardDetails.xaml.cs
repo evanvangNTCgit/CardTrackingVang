@@ -6,12 +6,14 @@ namespace CardTrackingVang;
 [QueryProperty(nameof(Value), "value")]
 [QueryProperty(nameof(CardType), "cardtype")]
 [QueryProperty(nameof(CardId), "SelectedCardId")]
+[QueryProperty(nameof(CardImagePath), "CardImagePath")]
 public partial class CardDetails : ContentPage
 {
     private string title;
     private decimal value;
     private string cardtype;
     private int cardid;
+    private string cardImagePath;
 
     private CardsListViewModel _cardListViewModel;
 
@@ -60,6 +62,16 @@ public partial class CardDetails : ContentPage
         set
         {
             this.cardid = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string CardImagePath
+    {
+        get => this.cardImagePath;
+        set
+        {
+            this.cardImagePath = value;
             OnPropertyChanged();
         }
     }
@@ -145,6 +157,40 @@ public partial class CardDetails : ContentPage
             // Then navigate back...
             await Shell.Current.DisplayAlertAsync("ALERT", "Failed to update card title...\nRefreshing list", "OK");
             await Shell.Current.GoToAsync("..");
+        }
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // return ImageSource.FromFile(this._card.CardImage.ImagePath);
+        if(!string.IsNullOrEmpty(this.cardImagePath)) 
+        {
+            this.CardImage.Source = ImageSource.FromFile(this.cardImagePath);
+        } else
+        {
+            switch (this.CardType)
+            {
+                case ("Sport"):
+                    this.CardImage.Source = ImageSource.FromFile("runningicon.png");
+                    break;
+                case ("Pokemon"):
+                    this.CardImage.Source = ImageSource.FromFile("pikapi.png");
+                    break;
+                case ("Digimon"):
+                    this.CardImage.Source = ImageSource.FromFile("digimonlogo.png");
+                    break;
+                case ("Yu-Gi-Oh!"):
+                    this.CardImage.Source = ImageSource.FromFile("yugioh.png");
+                    break;
+                case ("Magic: The Gathering"):
+                    this.CardImage.Source = ImageSource.FromFile("magicgatheringlogo.png");
+                    break;
+                default:
+                    this.CardImage.Source = ImageSource.FromFile("dotnet_bot.png");
+                    break;
+            }
         }
     }
 }
