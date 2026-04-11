@@ -22,8 +22,8 @@
                 Aspect="AspectFit"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
-                HeightRequest="35"
-                WidthRequest="25" />
+                HeightRequest="10"
+                WidthRequest="10" />
                         </DataTemplate>
                     </map:MapTileLayer.MarkerTemplate>
                     <map:MapTileLayer.ZoomPanBehavior>

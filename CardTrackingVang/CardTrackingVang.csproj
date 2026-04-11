@@ -130,6 +130,9 @@
 	  <MauiXaml Update="Help.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="RandomPokemonGen.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="UserPreferences.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
