@@ -31,7 +31,6 @@ public partial class AnalyzeCardImage : ContentPage, INotifyPropertyChanged
 
         // Ask for camera permission:
         var cameraPermissionRequest = await Permissions.RequestAsync<Permissions.Camera>();
-        this.UserCamera.IsEnabled = true;
         if (cameraPermissionRequest != PermissionStatus.Granted)
         {
             await DisplayAlertAsync("ALERT", "Camera permissions are needed to use the AI image view.\nPlease allow camera permissions for this service", "OK");
@@ -41,32 +40,7 @@ public partial class AnalyzeCardImage : ContentPage, INotifyPropertyChanged
     protected override void OnDisappearing()
     {
         base.OnDisappearing();
-
-        this.UserCamera.IsEnabled = false;
     }
-
-    private async void Capture_Clicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var picStream = await this.UserCamera.CaptureImage(CancellationToken.None);
-
-            if (picStream != null)
-            {
-                var ai = await this._computerVisionService.AnalyzeImageAsync(picStream);
-                await DisplayAlertAsync("Info", $"{ai}", "OK");
-            }
-            else
-            {
-                await DisplayAlertAsync("ALERT", "Failed to see image taken\nPlease try again!", "OK");
-                return;
-            }
-        }
-        catch (Exception ex) 
-        {
-            await DisplayAlertAsync("ALERT", $"Error occured processing image please try again\n{ex.Message}", "OK");
-        }
-        }
 
     private async void SelectImageBTN_Clicked(object sender, EventArgs e)
     {

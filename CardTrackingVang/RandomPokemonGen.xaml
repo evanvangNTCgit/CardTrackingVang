@@ -5,6 +5,9 @@
              Title="RandomPokemonGen"
              Style="{StaticResource MobileMargining}">
     <VerticalStackLayout>
-        <Button Text="Get a random pokemon!" x:Name="GenPokeBTN" Clicked="GenPokeBTN_Clicked"></Button>
+        <Grid RowDefinitions="*,*">
+            <Image Grid.Row="0" Source="pokeball.png" MaximumHeightRequest="250"></Image>
+            <Button Grid.Row="2" Margin="20" Style="{StaticResource Add Button}" Text="Get a random pokemon!" x:Name="GenPokeBTN" Clicked="GenPokeBTN_Clicked"></Button>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

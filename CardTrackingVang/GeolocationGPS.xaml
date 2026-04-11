@@ -35,6 +35,6 @@
 
         </map:SfMaps>
 
-        <Button Text="Locate" x:Name="LocateBTN" Clicked="LocateBTN_Clicked"/>
+        <Button Text="Locate" Style="{StaticResource Edit Button}" x:Name="LocateBTN" Clicked="LocateBTN_Clicked"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -5,14 +5,16 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:cameraModel="clr-namespace:CommunityToolkit.Maui.Core;assembly=CommunityToolkit.Maui.Camera"
              xmlns:vm="clr-namespace:CardTrackingVang.ViewModel"
+             Style="{StaticResource MobileMargining}"
              Title="AnalyzeCardImage">
     <VerticalStackLayout>
-        <toolkit:CameraView 
-            x:Name="UserCamera"
-            Grid.ColumnSpan="3"
-            Grid.Row="0" 
-            MaximumHeightRequest="300"/>
-        
+        <Grid RowDefinitions="*,*,*,*,* " ColumnDefinitions="*">
+            <Label Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource TitleLabelStyling}" HorizontalOptions="Center" FontSize="25" Margin="10" Text="Tips For Optimal Analysis"></Label>
+            <Label Style="{StaticResource InfoLabel}" Grid.Row=" 1" Grid.Column="0" Text="1. Choose a high resolution image"></Label>
+            <Label Style="{StaticResource InfoLabel}" Grid.Row=" 2" Grid.Column="0" Text="2. Image should be clear"></Label>
+            <Label Style="{StaticResource InfoLabel}" Grid.Row=" 3" Grid.Column="0" Text="3. Image should include only the card"></Label>
+            <Image Margin="10" Source="pikachucard.png" Grid.Row="4" Grid.ColumnSpan="2"></Image>
+        </Grid>
         <ActivityIndicator
             x:Name="AiActivityIndicator"
             x:DataType="vm:ImageRecognitionViewModel"
@@ -21,8 +23,7 @@
             IsRunning="{Binding IsAnalyzing}"
             Color="Red">
 
-            </ActivityIndicator>
-        <Button x:Name="Capture" Text="Capture" Clicked="Capture_Clicked"></Button>
-        <Button x:Name="SelectImageBTN" Text="Pick and Analyze Image" Clicked="SelectImageBTN_Clicked"></Button>
+        </ActivityIndicator>
+        <Button Style="{StaticResource Add Button}" x:Name="SelectImageBTN" Text="Pick and Analyze Image" Clicked="SelectImageBTN_Clicked"></Button>
     </VerticalStackLayout>
 </ContentPage>
