@@ -31,12 +31,10 @@ namespace CardTrackingVang.ViewModel
             imageSource = "";
         }
 
-        public async Task<string> PickAndAnalyzeImage()
+        public async Task<string> PickAndAnalyzeImage(FileResult photo)
         {
             try
             {
-                // Pick a photo from the gallery
-                var photo = await MediaPicker.PickPhotoAsync();
                 if (photo == null)
                     return "";
 
