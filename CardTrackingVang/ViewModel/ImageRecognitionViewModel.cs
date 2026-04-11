@@ -38,8 +38,16 @@ namespace CardTrackingVang.ViewModel
                 if (photo == null)
                     return "";
 
+                var readPerm = await Permissions.RequestAsync<Permissions.StorageRead>();
+                var writePerm = await Permissions.RequestAsync<Permissions.StorageWrite>();
+                if(readPerm != PermissionStatus.Granted ||
+                    writePerm != PermissionStatus.Granted)
+                {
+                    throw new Exception("Permissions not granted!");
+                }
+
                 // Display the selected image
-                ImageSource = photo.FullPath;
+                //ImageSource = photo.FullPath;
                 IsImageSelected = true;
                 AnalysisResult = "Analyzing image...";
                 IsAnalyzing = true;

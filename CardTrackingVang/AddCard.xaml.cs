@@ -69,14 +69,14 @@ public partial class AddCard : ContentPage
             this._cardListViewModel.AddCardWithModel(cardGettingAdded);
 
             await DisplayAlertAsync("Success", "Card added successfully!\nTaking you back...", "OK");
-            await Shell.Current.GoToAsync("//MainPage");
+            await Shell.Current.GoToAsync("///MainPage");
         }
         catch (Exception ex)
         {
             // Failed to add card notify user of error and a soon to be fixed.
             await DisplayAlertAsync("ALERT", $"Failed to add card. Please try again later.\n\nError details: {ex.Message}", "OK");
             await DisplayAlertAsync("ALERT", "Taking you back...", "OK");
-            await Shell.Current.GoToAsync("//MainPage");
+            await Shell.Current.GoToAsync("///MainPage");
         }
     }
 

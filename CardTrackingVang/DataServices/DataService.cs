@@ -68,6 +68,13 @@ namespace CardTrackingVang.DataServices
                 .FirstOrDefault()!;
         }
 
+        public CardType GetCardType(string TypeName) 
+        {
+            return this._dataContext.CardType
+                .Where(c => c.Type == TypeName)
+                .FirstOrDefault()!;
+        }
+
         public List<Card> GetCards()
         {
             return this._dataContext.Card

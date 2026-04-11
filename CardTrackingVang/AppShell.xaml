@@ -12,10 +12,10 @@
         <Tab Title="Add Card" Icon="plusicon.png">
             <ShellContent ContentTemplate="{DataTemplate local:AddCard}" Route="AddCard"/>
         </Tab>
-        <Tab Title="Analyze" Icon="viewer.png">
+        <Tab Title="Analyze" Icon="eyeblack.png">
             <ShellContent ContentTemplate="{DataTemplate local:AnalyzeCardImage}" Route="AnalyzeCard"/>
         </Tab>
-        <Tab Title="Poke" Icon="pokeballicon.png">
+        <Tab Title="Poke" Icon="pikachulogo.png">
             <ShellContent ContentTemplate="{DataTemplate local:RandomPokemonGen}" Route="Poke"/>
         </Tab>
         <Tab Title="GPS" Icon="compassicon.png">
