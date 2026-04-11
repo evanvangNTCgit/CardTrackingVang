@@ -6,4 +6,9 @@ public partial class RandomPokemonGen : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void GenPokeBTN_Clicked(object sender, EventArgs e)
+    {
+
+    }
 }

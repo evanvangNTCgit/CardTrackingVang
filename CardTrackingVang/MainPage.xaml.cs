@@ -1,4 +1,5 @@
 ﻿using CardTrackingVang.AiServices;
+using CardTrackingVang.Services;
 using CardTrackingVang.ViewModel;
 
 namespace CardTrackingVang
@@ -22,6 +23,9 @@ namespace CardTrackingVang
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+
+            PokeApiService p = new();
+            await p.GetRandomPokemon();
 
             if (!LoadingUserPreferences.loadedStartup)
             {

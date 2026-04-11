@@ -5,9 +5,6 @@
              Title="RandomPokemonGen"
              Style="{StaticResource MobileMargining}">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Button Text="Get a random pokemon!" x:Name="GenPokeBTN" Clicked="GenPokeBTN_Clicked"></Button>
     </VerticalStackLayout>
 </ContentPage>
