@@ -40,6 +40,34 @@
 
             <Border BackgroundColor="{StaticResource EvanWhite}" Padding="10">
                 <VerticalStackLayout>
+                    <Label Text="Analyzing a card" FontAttributes="Bold" BackgroundColor="{StaticResource EvanYellow}" Padding="5" />
+                    <Label Text="- Make sure to use a very high resolution image with almost if not no background."
+                           TextColor="{StaticResource EvanBlack}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="{StaticResource EvanWhite}" Padding="10">
+                <VerticalStackLayout>
+                    <Label Text="GPS coordinates" FontAttributes="Bold" BackgroundColor="{StaticResource EvanYellow}" Padding="5" />
+                    <Label Text="- Check to see if permissions are enabled"
+                           TextColor="{StaticResource EvanBlack}" />
+                    <Label Text="- The additional marker on the map is located at Coulee Cards and Gaming Wausau"
+                           TextColor="{StaticResource EvanBlack}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="{StaticResource EvanWhite}" Padding="10">
+                <VerticalStackLayout>
+                    <Label Text="PokeAPI" FontAttributes="Bold" BackgroundColor="{StaticResource EvanYellow}" Padding="5" />
+                    <Label Text="- Gives you a chance to catch a random pokemon to add to your collection."
+                           TextColor="{StaticResource EvanBlack}" />
+                    <Label Text="- Make sure your internet is on if this is not working. Otherwise your device may not support HTTPS requests."
+                           TextColor="{StaticResource EvanBlack}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="{StaticResource EvanWhite}" Padding="10">
+                <VerticalStackLayout>
                     <Label Text="Editing and deleting" FontAttributes="Bold" BackgroundColor="{StaticResource EvanYellow}" Padding="5" />
                     <Label Text="- In a card's details page you can edit the title or value."
                            TextColor="{StaticResource EvanBlack}" />
