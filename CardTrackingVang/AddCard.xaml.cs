@@ -62,6 +62,8 @@ public partial class AddCard : ContentPage
                 {
                     await sourceStream.CopyToAsync(localFileStream);
                 }
+
+                cardGettingAdded.CardImage = new CardImage() { ImagePath = localFilePath, Card = cardGettingAdded};
             }
 
             this._cardListViewModel.AddCardWithModel(cardGettingAdded);

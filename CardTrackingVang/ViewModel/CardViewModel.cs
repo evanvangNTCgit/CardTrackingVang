@@ -6,6 +6,8 @@ namespace CardTrackingVang.ViewModel
 {
     public class CardViewModel : INotifyPropertyChanged
     {
+        private readonly Card _card;
+
         private int _Id;
 
         private string _title;
@@ -16,15 +18,19 @@ namespace CardTrackingVang.ViewModel
 
         public CardType _cardType;
 
+        private CardImage _cardImage;
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public CardViewModel(Card c) 
         {
+            _card = c;
             _Id = c.Id;
             _title = c.Title;
             _value = c.Value;
             _cardTypeId = c.CardTypeID;
             _cardType = c.CardType;
+            _cardImage = c.CardImage;
         }
         public int Id
         {
@@ -82,20 +88,29 @@ namespace CardTrackingVang.ViewModel
         {
             get
             {
-                switch (this.CardType.Type) 
+                if (this._card.CardImage != null && !string.IsNullOrEmpty(this._card.CardImage.ImagePath))
                 {
-                    case ("Sport"):
-                        return ImageSource.FromFile("runningicon.png");
-                    case ("Pokemon"):
-                        return ImageSource.FromFile("pikapi.png");
-                    case ("Digimon"):
-                        return ImageSource.FromFile("digimonlogo.png");
-                    case ("Yu-Gi-Oh!"):
-                        return ImageSource.FromFile("yugioh.png");
-                    case ("Magic: The Gathering"):
-                        return ImageSource.FromFile("magicgatheringlogo.png");
-                    default:
-                        return ImageSource.FromFile("dotnet_bot.png");
+                    // Return the custom photo (Azure AI Vision result or manual upload)
+                    return ImageSource.FromFile(this._card.CardImage.ImagePath);
+                }
+                else
+                {
+
+                    switch (this.CardType.Type)
+                    {
+                        case ("Sport"):
+                            return ImageSource.FromFile("runningicon.png");
+                        case ("Pokemon"):
+                            return ImageSource.FromFile("pikapi.png");
+                        case ("Digimon"):
+                            return ImageSource.FromFile("digimonlogo.png");
+                        case ("Yu-Gi-Oh!"):
+                            return ImageSource.FromFile("yugioh.png");
+                        case ("Magic: The Gathering"):
+                            return ImageSource.FromFile("magicgatheringlogo.png");
+                        default:
+                            return ImageSource.FromFile("dotnet_bot.png");
+                    }
                 }
             }
         }

@@ -72,15 +72,13 @@ namespace CardTrackingVang.DataServices
         {
             return this._dataContext.Card
                 .Include(c => c.CardType)
+                .Include(ci => ci.CardImage)
                 .ToList();
         }
 
         public void AddCard(Card card)
         {
             this._dataContext.Add(card);
-            this._dataContext.SaveChanges();
-
-            this._dataContext.Add(card.CardImage);
             this._dataContext.SaveChanges();
         }
 
