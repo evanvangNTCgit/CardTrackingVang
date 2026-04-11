@@ -67,9 +67,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiAsset Remove="Resources\Raw\appsettings.local.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="appsettings.local.json" />
 	  <None Remove="devsettings.json" />
 	  <None Remove="Resources\appsettings.local.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\Raw\appsettings.local.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -92,12 +102,6 @@
 	  <Compile Update="CardHandling.xaml.cs">
 	    <DependentUpon>CardHandling.xaml</DependentUpon>
 	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiAsset Update="Resources\Raw\appsettings.local.json">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </MauiAsset>
 	</ItemGroup>
 
 	<ItemGroup>

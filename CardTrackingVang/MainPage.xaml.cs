@@ -22,10 +22,6 @@ namespace CardTrackingVang
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            if (string.IsNullOrEmpty(_keys.OpenAIEndpoint)) 
-            {
-                await DisplayAlertAsync("ALERT", "You have no access to AI services on this app.", "OK");
-            }
 
             if (!LoadingUserPreferences.loadedStartup)
             {

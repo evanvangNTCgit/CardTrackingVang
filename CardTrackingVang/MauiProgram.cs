@@ -35,32 +35,54 @@ namespace CardTrackingVang
             // Reading from secrets.json
             // CANNOT READ FROM SECRETS.JSON ON MOBILE.
             // must do this instead.
-            builder.Configuration.AddJsonFile("appsettings.local.json");
-            var Aiskeys = new AiKeys()
-            {
-                OpenAIEndpoint = builder.Configuration["OpenAiEndpoint"]!,
-                OpenAIKey = builder.Configuration["OpenAiKey"]!,
-                ComputerVisionEndpoint = builder.Configuration["ComputerVisionEndpoint"]!,
-                ComputerVisionKey = builder.Configuration["ComputerVisionKey"]!,
-                TextAnalyticsEndpoint = builder.Configuration["TextAnalyticsEndpoint"]!,
-                TextAnalyticsKey = builder.Configuration["TextAnalyticsKey"]!,
-                SpeechServiceEndpoint = builder.Configuration["SpeechServiceEndpoint"]!,
-                SpeechServiceKey = builder.Configuration["SpeechServiceKey"]!
-            };
+            // builder.Configuration.AddJsonFile("appsettings.local.json");
 
-            var endpoint = Aiskeys.OpenAIEndpoint;
-            var apiKey = Aiskeys.OpenAIKey;
-            var foundryClient = new AzureOpenAIClient(new Uri(endpoint), new System.ClientModel.ApiKeyCredential(apiKey));
-            var chatClient = foundryClient.GetChatClient("gpt-4o").AsIChatClient();
-            builder.Services.AddSingleton(chatClient);
-            builder.Services.AddSingleton<ChatService>();
-            builder.Services.AddSingleton(Aiskeys);
-            builder.Services.AddSingleton(new ComputerVisionService(Aiskeys));
+            // GPT-------
+            // Get the assembly where the json is located
+            var assembly = typeof(App).Assembly;
+            // The name is usually [ProjectName].[FileName]
+            using var stream = assembly.GetManifestResourceStream("CardTrackingVang.Resources.Raw.appsettings.local.json");
+
+            if (stream != null)
+            {
+                var config = new ConfigurationBuilder()
+                    .AddJsonStream(stream)
+                    .Build();
+
+                var Aiskeys = new AiKeys()
+                {
+                    OpenAIEndpoint = config["OpenAiEndpoint"] ?? "",
+                    OpenAIKey = config["OpenAiKey"] ?? "",
+                    ComputerVisionEndpoint = config["ComputerVisionEndpoint"] ?? "",
+                    ComputerVisionKey = config["ComputerVisionKey"] ?? "",
+                    TextAnalyticsEndpoint = builder.Configuration["TextAnalyticsEndpoint"] ?? "",
+                    TextAnalyticsKey = builder.Configuration["TextAnalyticsKey"] ?? "",
+                    SpeechServiceEndpoint = builder.Configuration["SpeechServiceEndpoint"] ?? "",
+                    SpeechServiceKey = builder.Configuration["SpeechServiceKey"] ?? "",
+                };
+
+                // Safely initialize the client
+                if (!string.IsNullOrEmpty(Aiskeys.OpenAIEndpoint) && !string.IsNullOrEmpty(Aiskeys.OpenAIKey))
+                {
+                    var foundryClient = new AzureOpenAIClient(new Uri(Aiskeys.OpenAIEndpoint), new System.ClientModel.ApiKeyCredential(Aiskeys.OpenAIKey));
+                    builder.Services.AddSingleton(foundryClient.GetChatClient("gpt-4o").AsIChatClient());
+
+                    var endpoint = Aiskeys.OpenAIEndpoint;
+                    var apiKey = Aiskeys.OpenAIKey;
+                    // var foundryClient = new AzureOpenAIClient(new Uri(endpoint), new System.ClientModel.ApiKeyCredential(apiKey));
+                    var chatClient = foundryClient.GetChatClient("gpt-4o").AsIChatClient();
+                    builder.Services.AddSingleton(chatClient);
+                    builder.Services.AddSingleton<ChatService>();
+                    builder.Services.AddSingleton(new ComputerVisionService(Aiskeys));
+                }
+                // GPT------
+                builder.Services.AddSingleton(Aiskeys);
+            }
 #if DEBUG
-            builder.Logging.AddDebug();
+                builder.Logging.AddDebug();
 #endif
 
-            return builder.Build();
+                return builder.Build();
+            }
         }
     }
-}
