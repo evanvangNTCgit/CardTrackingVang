@@ -9,6 +9,8 @@ public partial class AddCard : ContentPage
 
     List<CardType> _cardTypes;
 
+    private FileResult? UserPhotoSubmission;
+
     public AddCard(CardsListViewModel clvm)
     {
         this._cardListViewModel = clvm;
@@ -49,6 +51,19 @@ public partial class AddCard : ContentPage
                 CardTypeID = this._cardTypes.First(ct => ct.Type == this.CardTypePicker.SelectedItem.ToString()).Id
             };
 
+            if (this.UserPhotoSubmission != null)
+            {
+                // Use AppDataDirectory so the OS doesn't delete the image randomly
+                string fileName = $"{Guid.NewGuid()}_{this.UserPhotoSubmission.FileName}";
+                string localFilePath = Path.Combine(FileSystem.AppDataDirectory, fileName);
+
+                using (Stream sourceStream = await this.UserPhotoSubmission.OpenReadAsync())
+                using (FileStream localFileStream = File.OpenWrite(localFilePath))
+                {
+                    await sourceStream.CopyToAsync(localFileStream);
+                }
+            }
+
             this._cardListViewModel.AddCardWithModel(cardGettingAdded);
 
             await DisplayAlertAsync("Success", "Card added successfully!\nTaking you back...", "OK");
@@ -60,6 +75,29 @@ public partial class AddCard : ContentPage
             await DisplayAlertAsync("ALERT", $"Failed to add card. Please try again later.\n\nError details: {ex.Message}", "OK");
             await DisplayAlertAsync("ALERT", "Taking you back...", "OK");
             await Shell.Current.GoToAsync("//MainPage");
+        }
+    }
+
+    private async void TakePhotoBTN_Clicked(object sender, EventArgs e)
+    {
+        // https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/device-media/picker?view=net-maui-10.0&viewFallbackFrom=net-maui-7.0&tabs=android#take-a-photo
+
+        if (MediaPicker.Default.IsCaptureSupported) 
+        {
+            FileResult photo = await MediaPicker.Default.CapturePhotoAsync();
+
+            if(photo!= null) 
+            {
+                this.UserPhotoSubmission = photo;
+                this.UserImage.Source = photo.FullPath;
+            } else
+            {
+                this.UserPhotoSubmission = null;
+                this.UserImage.IsVisible = false;
+            }
+        } else
+        {
+            await DisplayAlertAsync("ALERT", "Your device seems to not support taking photos", "OK");
         }
     }
 }

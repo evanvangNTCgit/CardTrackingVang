@@ -9,6 +9,13 @@ namespace CardTrackingVang.DataAccess
         // The tables in my sqllite DB file.
         public DbSet<Card> Card { get; set; }
         public DbSet<CardType> CardType { get; set; }
+        public DbSet<CardImage> CardImage { get; set; }
+
+        public DataContext() 
+        {
+            this.Database.EnsureDeleted();
+            this.Database.EnsureCreated();
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -27,6 +34,10 @@ namespace CardTrackingVang.DataAccess
                 .WithMany()
                 .HasForeignKey(c => c.CardTypeID);
 
+            modelBuilder.Entity<Card>()
+                .HasOne(c => c.CardImage)
+                .WithOne(ci => ci.Card)
+                .HasForeignKey<CardImage>(ci => ci.Id);
         }
     }
 }
