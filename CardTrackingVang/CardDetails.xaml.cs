@@ -193,4 +193,9 @@ public partial class CardDetails : ContentPage
             }
         }
     }
+
+    private async void TextToSpeechBTN_Clicked(object sender, EventArgs e)
+    {
+        await TextToSpeech.Default.SpeakAsync($"Title {this.Title}... Value of card, {this.Value}... Card Type, {this.CardType}");
+    }
 }

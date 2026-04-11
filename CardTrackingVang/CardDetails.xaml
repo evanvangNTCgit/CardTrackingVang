@@ -54,8 +54,11 @@
             </VerticalStackLayout>
         </Border>
         <Border>
+                <HorizontalStackLayout>
         <Button Style="{StaticResource Add Button}" BackgroundColor="{StaticResource EvanRed}" Text="Delete Card" x:Name="DeleteCardBtn" Clicked="DeleteCardBtn_Clicked"></Button>
-        </Border>
+                    <Button Style="{StaticResource Add Button}" BackgroundColor="{StaticResource EvanRed}" Text="Test To Speech" x:Name="TextToSpeechBTN" Clicked="TextToSpeechBTN_Clicked"></Button>
+                </HorizontalStackLayout>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
