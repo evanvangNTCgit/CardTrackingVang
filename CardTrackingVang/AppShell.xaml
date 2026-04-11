@@ -24,6 +24,9 @@
         <Tab Title="GPS">
             <ShellContent ContentTemplate="{DataTemplate local:GeolocationGPS}" Route="GPS"/>
         </Tab>
+        <Tab Title="Poke">
+            <ShellContent ContentTemplate="{DataTemplate local:RandomPokemonGen}" Route="Poke"/>
+        </Tab>
     </TabBar>
 
 </Shell>
