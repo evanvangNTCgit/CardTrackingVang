@@ -96,6 +96,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
 		<PackageReference Include="OpenAI" Version="2.10.0" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+		<PackageReference Include="Syncfusion.Maui.Maps" Version="33.1.47" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -118,6 +119,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="DeleteCard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="GeolocationGPS.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="HeaderApp.xaml">

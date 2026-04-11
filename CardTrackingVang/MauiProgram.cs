@@ -7,6 +7,7 @@ using CommunityToolkit.Maui;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Syncfusion.Maui.Core.Hosting;
 
 namespace CardTrackingVang
 {
@@ -18,6 +19,7 @@ namespace CardTrackingVang
             builder
                 .UseMauiCommunityToolkitCamera()
                 .UseMauiApp<App>()
+                .ConfigureSyncfusionCore()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -79,10 +81,10 @@ namespace CardTrackingVang
                 builder.Services.AddSingleton(Aiskeys);
             }
 #if DEBUG
-                builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
-                return builder.Build();
-            }
+            return builder.Build();
         }
     }
+}

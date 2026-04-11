@@ -30,5 +30,10 @@
 	<string>Assets.xcassets/appicon.appiconset</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Camera is required for AI analyze service.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need your location to provide better services.</string>
+
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We need your location for tracking purposes.</string>
 </dict>
 </plist>

@@ -21,6 +21,9 @@
         <Tab Title="Preferences">
             <ShellContent ContentTemplate="{DataTemplate local:UserPreferences}" Route="Preferences"/>
         </Tab>
+        <Tab Title="GPS">
+            <ShellContent ContentTemplate="{DataTemplate local:GeolocationGPS}" Route="GPS"/>
+        </Tab>
     </TabBar>
 
 </Shell>
