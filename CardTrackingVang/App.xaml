@@ -12,7 +12,6 @@
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <!-- Colors (kept your palette, slightly refined usage) -->
             <Color x:Key="EvanBlack">#011627</Color>
             <Color x:Key="EvanWhite">#FDFFFC</Color>
             <Color x:Key="EvanTeal">#2EC4B6</Color>
@@ -59,6 +58,15 @@
             <Style x:Key="PokemonBg" TargetType="ContentPage">
                 <Setter Property="Padding" Value="{OnPlatform iOS=0, Android=0, WinUI=20}" />
                 <Setter Property="BackgroundColor" Value="{DynamicResource EvanYellow}" />
+            </Style>
+
+            <!-- Section Container -->
+            <Style x:Key="CardDetailsBorder" TargetType="Border">
+                <Setter Property="Margin" Value="10,5"/>
+                <Setter Property="Padding" Value="12"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource EvanWhite}"/>
+                <Setter Property="StrokeShape" Value="RoundRectangle 12"/>
+                <Setter Property="Stroke" Value="#DDDDDD"/>
             </Style>
 
             <!-- Card List Item (compact row style) -->

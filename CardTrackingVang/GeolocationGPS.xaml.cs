@@ -28,7 +28,7 @@ public partial class GeolocationGPS : ContentPage
 
             Location? location = await Geolocation.GetLocationAsync(new GeolocationRequest
             {
-                DesiredAccuracy = GeolocationAccuracy.High,
+                DesiredAccuracy = GeolocationAccuracy.Best,
                 Timeout = TimeSpan.FromSeconds(30)
             });
 

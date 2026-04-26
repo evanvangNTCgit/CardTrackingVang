@@ -27,43 +27,36 @@
         </Border>
 
         <!-- Map Container -->
-        <Border Style="{StaticResource CardDetailsBorder}"
-                Padding="0"
-                HeightRequest="450">
+        <map:SfMaps x:DataType="vm:MarkerViewModel">
 
-            <map:SfMaps x:DataType="vm:MarkerViewModel">
+            <map:SfMaps.Layer>
 
-                <map:SfMaps.Layer>
-
-                    <map:MapTileLayer
+                <map:MapTileLayer
                         Markers="{Binding MarkerModels}"
                         x:Name="tileLayer"
                         UrlTemplate="https://tile.openstreetmap.org/{z}/{x}/{y}.png">
 
-                        <map:MapTileLayer.MarkerTemplate>
-                            <DataTemplate>
-                                <Image Source="pin.png"
+                    <map:MapTileLayer.MarkerTemplate>
+                        <DataTemplate>
+                            <Image Source="pin.png"
                                        Aspect="AspectFit"
                                        HeightRequest="12"
                                        WidthRequest="12"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center" />
-                            </DataTemplate>
-                        </map:MapTileLayer.MarkerTemplate>
+                        </DataTemplate>
+                    </map:MapTileLayer.MarkerTemplate>
 
-                        <map:MapTileLayer.ZoomPanBehavior>
-                            <map:MapZoomPanBehavior x:Name="zoomPanBehavior"
+                    <map:MapTileLayer.ZoomPanBehavior>
+                        <map:MapZoomPanBehavior x:Name="zoomPanBehavior"
                                                     MaxZoomLevel="20" />
-                        </map:MapTileLayer.ZoomPanBehavior>
+                    </map:MapTileLayer.ZoomPanBehavior>
 
-                    </map:MapTileLayer>
+                </map:MapTileLayer>
 
-                </map:SfMaps.Layer>
+            </map:SfMaps.Layer>
 
-            </map:SfMaps>
-
-        </Border>
-
+        </map:SfMaps>
         <!-- Action Controls -->
         <Border Style="{StaticResource CardDetailsBorder}">
 

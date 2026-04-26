@@ -58,12 +58,6 @@
                     Color="Red"
                     HeightRequest="40"
                     WidthRequest="40" />
-
-                <Label Text="Analyzing image..."
-                       IsVisible="{Binding IsAnalyzing}"
-                       TextColor="Gray"
-                       FontSize="12"
-                       HorizontalOptions="Center"/>
             </VerticalStackLayout>
 
             <!-- Action Button -->

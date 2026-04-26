@@ -23,15 +23,6 @@
             <Setter Property="TextColor" Value="{StaticResource EvanBlack}"/>
         </Style>
 
-        <!-- Section Container -->
-        <Style x:Name="CardDetailsBorder" TargetType="Border">
-            <Setter Property="Margin" Value="10,5"/>
-            <Setter Property="Padding" Value="12"/>
-            <Setter Property="BackgroundColor" Value="{StaticResource EvanWhite}"/>
-            <Setter Property="StrokeShape" Value="RoundRectangle 12"/>
-            <Setter Property="Stroke" Value="#DDDDDD"/>
-        </Style>
-
     </ContentPage.Resources>
 
     <ScrollView>
