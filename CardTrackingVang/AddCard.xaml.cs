@@ -38,7 +38,7 @@ public partial class AddCard : ContentPage
                 if (!answer)
                 {
                     // Take the user back...
-                    await Shell.Current.GoToAsync("//MainPage");
+                    await Shell.Current.GoToAsync("///MainPage");
                     return;
                 }
             }
@@ -100,6 +100,8 @@ public partial class AddCard : ContentPage
         } else
         {
             await DisplayAlertAsync("ALERT", "Your device seems to not support taking photos", "OK");
+            this.UserPhotoSubmission = null;
+            this.UserImage.IsVisible = false;
         }
     }
 }

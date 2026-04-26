@@ -7,25 +7,17 @@ namespace CardTrackingVang
     public partial class MainPage : ContentPage
     {
         private CardsListViewModel _cardListVM;
-        private readonly AiKeys _keys;
-
-        public MainPage(CardsListViewModel cm, AiKeys a)
+        public MainPage(CardsListViewModel cm)
         {
             this._cardListVM = cm;
-            this._keys = a;
 
             InitializeComponent();
-
-            // Bind the UI element to the current list of card types
             this.TestOutput.ItemsSource = this._cardListVM.Cards;
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-
-            PokeApiService p = new();
-            await p.GetRandomPokemon();
 
             if (!LoadingUserPreferences.loadedStartup)
             {
