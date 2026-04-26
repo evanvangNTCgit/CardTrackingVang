@@ -9,10 +9,25 @@
              >
 
     <ScrollView>
-        <VerticalStackLayout>
-            <Header:HeaderApp></Header:HeaderApp>
-            <CollectionView x:Name="TestOutput" x:DataType="ViewModels:CardViewModel" ItemTemplate="{StaticResource CardsListHomeTemplate}">
-            </CollectionView>
+        <VerticalStackLayout Spacing="10">
+
+            <!-- Header -->
+            <Header:HeaderApp />
+
+            <!-- Content Wrapper (adds structure + centering on large screens) -->
+            <VerticalStackLayout
+            Padding="10,0,10,10"
+            HorizontalOptions="Center"
+            MaximumWidthRequest="600">
+
+                <CollectionView
+                x:Name="TestOutput"
+                x:DataType="ViewModels:CardViewModel"
+                ItemTemplate="{StaticResource CardsListHomeTemplate}"
+                Margin="0,5,0,0" />
+
+            </VerticalStackLayout>
+
         </VerticalStackLayout>
     </ScrollView>
 

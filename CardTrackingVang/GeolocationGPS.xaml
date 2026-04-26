@@ -6,35 +6,82 @@
              x:Class="CardTrackingVang.GeolocationGPS"
              Title="GeolocationGPS"
              Style="{StaticResource MobileMargining}">
-    <VerticalStackLayout>
-        <map:SfMaps
-            x:DataType="vm:MarkerViewModel">
-            <map:SfMaps.Layer>
-                <map:MapTileLayer                     
-                    Markers="{Binding MarkerModels}"
-            x:Name="tileLayer"
-            UrlTemplate="https://tile.openstreetmap.org/{z}/{x}/{y}.png">
-                    <map:MapTileLayer.MarkerTemplate>
-                        <DataTemplate>
-                            <Image 
-                Source="pin.png"
-                Scale="1"
-                Aspect="AspectFit"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                HeightRequest="10"
-                WidthRequest="10" />
-                        </DataTemplate>
-                    </map:MapTileLayer.MarkerTemplate>
-                    <map:MapTileLayer.ZoomPanBehavior>
-                        <map:MapZoomPanBehavior x:Name="zoomPanBehavior"
-                                                MaxZoomLevel="20"/>
-                    </map:MapTileLayer.ZoomPanBehavior>
-                </map:MapTileLayer>
-            </map:SfMaps.Layer>
 
-        </map:SfMaps>
+    <VerticalStackLayout Spacing="15"
+                         Padding="15"
+                         MaximumWidthRequest="700"
+                         HorizontalOptions="Center">
 
-        <Button Text="Locate" Style="{StaticResource Edit Button}" x:Name="LocateBTN" Clicked="LocateBTN_Clicked"/>
+        <!-- Title -->
+        <Label Text="GPS Map View"
+               Style="{StaticResource TitleLabelStyling}"
+               HorizontalOptions="Center"
+               FontSize="22" />
+
+        <!-- Status Card -->
+        <Border Style="{StaticResource CardDetailsBorder}">
+            <Label Text="Tap 'Locate' to fetch your current position"
+                   TextColor="Gray"
+                   FontSize="13"
+                   HorizontalOptions="Center" />
+        </Border>
+
+        <!-- Map Container -->
+        <Border Style="{StaticResource CardDetailsBorder}"
+                Padding="0"
+                HeightRequest="450">
+
+            <map:SfMaps x:DataType="vm:MarkerViewModel">
+
+                <map:SfMaps.Layer>
+
+                    <map:MapTileLayer
+                        Markers="{Binding MarkerModels}"
+                        x:Name="tileLayer"
+                        UrlTemplate="https://tile.openstreetmap.org/{z}/{x}/{y}.png">
+
+                        <map:MapTileLayer.MarkerTemplate>
+                            <DataTemplate>
+                                <Image Source="pin.png"
+                                       Aspect="AspectFit"
+                                       HeightRequest="12"
+                                       WidthRequest="12"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                            </DataTemplate>
+                        </map:MapTileLayer.MarkerTemplate>
+
+                        <map:MapTileLayer.ZoomPanBehavior>
+                            <map:MapZoomPanBehavior x:Name="zoomPanBehavior"
+                                                    MaxZoomLevel="20" />
+                        </map:MapTileLayer.ZoomPanBehavior>
+
+                    </map:MapTileLayer>
+
+                </map:SfMaps.Layer>
+
+            </map:SfMaps>
+
+        </Border>
+
+        <!-- Action Controls -->
+        <Border Style="{StaticResource CardDetailsBorder}">
+
+            <VerticalStackLayout Spacing="10">
+
+                <Label Text="Location Controls"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource EvanBlack}" />
+
+                <Button Text="Locate Current Position"
+                        Style="{StaticResource Add Button}"
+                        x:Name="LocateBTN"
+                        Clicked="LocateBTN_Clicked" />
+
+            </VerticalStackLayout>
+
+        </Border>
+
     </VerticalStackLayout>
+
 </ContentPage>

@@ -85,7 +85,7 @@ public partial class AnalyzeCardImage : ContentPage, INotifyPropertyChanged
 
                     this._cardListViewModel.AddCardWithModel(AiGenCard);
 
-                    await Shell.Current.GoToAsync("///Main");
+                    await Shell.Current.GoToAsync("//MainPage");
                 }
                 else
                 {

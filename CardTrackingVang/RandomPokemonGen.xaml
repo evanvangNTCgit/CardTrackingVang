@@ -4,11 +4,53 @@
              x:Class="CardTrackingVang.RandomPokemonGen"
              Title="RandomPokemonGen"
              Style="{StaticResource MobileMargining}">
-    <VerticalStackLayout>
-        <Grid RowDefinitions="*,*,*">
-            <Image Grid.Row="0" x:Name="pokmeonSprite" Source="pokeball.png" MaximumHeightRequest="100" MaximumWidthRequest="100">
-            </Image>            
-            <Button Grid.Row="2" Margin="20" Style="{StaticResource Add Button}" Text="Get a random pokemon!" x:Name="GenPokeBTN" Clicked="GenPokeBTN_Clicked"></Button>
-        </Grid>
-    </VerticalStackLayout>
+
+    <ScrollView>
+
+        <VerticalStackLayout Spacing="25"
+                             Padding="25"
+                             HorizontalOptions="Center"
+                             MaximumWidthRequest="500">
+
+            <!-- Title -->
+            <Label Text="Random Pokémon Generator"
+                   Style="{StaticResource TitleLabelStyling}"
+                   HorizontalOptions="Center"
+                   FontSize="22" />
+
+            <!-- Visual Card -->
+            <Border Style="{StaticResource CardDetailsBorder}"
+                    HeightRequest="250">
+
+                <VerticalStackLayout Spacing="10"
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="Center">
+
+                    <Image x:Name="pokmeonSprite"
+                           Source="pokeball.png"
+                           HeightRequest="120"
+                           WidthRequest="120"
+                           Aspect="AspectFit" />
+
+                    <Label Text="Tap below to generate a Pokémon"
+                           TextColor="Gray"
+                           FontSize="13"
+                           HorizontalOptions="Center" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- Action Button -->
+            <Button Grid.Row="2"
+                    Margin="20,10,20,0"
+                    Style="{StaticResource Add Button}"
+                    Text="Get a random Pokémon!"
+                    x:Name="GenPokeBTN"
+                    Clicked="GenPokeBTN_Clicked" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
 </ContentPage>

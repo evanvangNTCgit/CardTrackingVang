@@ -3,76 +3,84 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CardTrackingVang.AddCard"
              Title="AddCard"
-                                       xmlns:Header ="clr-namespace:CardTrackingVang.Header"
+             xmlns:Header="clr-namespace:CardTrackingVang.Header"
              Style="{StaticResource MobileMargining}">
+
     <ScrollView>
         <ScrollView.Resources>
+
+            <!-- Labels -->
             <Style TargetType="Label" x:Name="AddCardLabels">
-                <Setter Property="BackgroundColor" Value="{StaticResource EvanYellow}"></Setter>
-                <Setter Property="FontSize" Value="Large"></Setter>
-                <Setter Property="Padding" Value="5"></Setter>
-                <Setter Property="HorizontalOptions" Value="Fill"></Setter>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="{StaticResource EvanBlack}"/>
+                <Setter Property="Margin" Value="0,10,0,2"/>
             </Style>
+
+            <!-- Inputs -->
             <Style TargetType="Entry" x:Name="AddCardEntries">
-                <Setter Property="BackgroundColor" Value="{StaticResource EvanRed}"></Setter>
-                <Setter Property="HeightRequest" Value="75"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource EvanWhite}"/>
+                <Setter Property="TextColor" Value="{StaticResource EvanBlack}"/>
+                <Setter Property="HeightRequest" Value="45"/>
+                <Setter Property="Margin" Value="0,0,0,10"/>
             </Style>
+
         </ScrollView.Resources>
-        <VerticalStackLayout Spacing="20" Padding="30">
-            <Header:HeaderApp></Header:HeaderApp>
 
-            <Label Text="Add Card" 
-                   FontSize="Header" 
-                   FontAttributes="Bold" 
-                   TextColor="{StaticResource EvanBlack}"
-                   BackgroundColor="{StaticResource EvanRed}"
-                   Padding="5"
-                   HorizontalOptions="Center"/>
+        <VerticalStackLayout Spacing="15" Padding="20">
 
-            <Button Text="Take a photo!"
-                    x:Name="TakePhotoBTN"
-                    Clicked="TakePhotoBTN_Clicked"
-                    CornerRadius="10"
-                    HeightRequest="50"
-                    Margin="0,20,0,0"
-                    BackgroundColor="{StaticResource EvanYellow}"
-                    TextColor="{StaticResource EvanBlack}" 
-                    FontSize="20"/>
+            <Header:HeaderApp />
 
-            <Image
-                x:Name="UserImage"
-                >                
-            </Image>
-            
-            <VerticalStackLayout Spacing="5">
-                <Label Text="Card Name / Title" />
-                <Entry x:Name="TitleEntry" 
+            <!-- Title -->
+            <Label Text="Add Card"
+                   Style="{StaticResource TitleLabelStyling}" />
+
+            <!-- Photo Section -->
+            <VerticalStackLayout Spacing="10">
+
+                <Button Text="Take a photo!"
+                        x:Name="TakePhotoBTN"
+                        Clicked="TakePhotoBTN_Clicked"
+                        Style="{StaticResource Add Button}" />
+
+                <Border Stroke="#DDDDDD"
+                        StrokeShape="RoundRectangle 10"
+                        BackgroundColor="{StaticResource EvanWhite}"
+                        HeightRequest="200"
+                        Padding="5">
+
+                    <Image x:Name="UserImage"
+                           Aspect="AspectFit" />
+                </Border>
+
+            </VerticalStackLayout>
+
+            <!-- Form Section -->
+            <VerticalStackLayout Spacing="10">
+
+                <Label Text="Card Name / Title" Style="{StaticResource AddCardLabels}" />
+                <Entry x:Name="TitleEntry"
+                       Style="{StaticResource AddCardEntries}"
                        Placeholder="e.g. Black Lotus" />
-            </VerticalStackLayout>
 
-            <VerticalStackLayout Spacing="5">
-                <Label Text="Market Value" />
-                <Entry x:Name="ValueEntry" 
-                       Placeholder="0.00" 
+                <Label Text="Market Value" Style="{StaticResource AddCardLabels}" />
+                <Entry x:Name="ValueEntry"
+                       Style="{StaticResource AddCardEntries}"
+                       Placeholder="0.00"
                        Keyboard="Numeric" />
-            </VerticalStackLayout>
 
-            <VerticalStackLayout>
-                <Label Text="Card Type" />
+                <Label Text="Card Type" Style="{StaticResource AddCardLabels}" />
                 <Picker x:Name="CardTypePicker"
-                        BackgroundColor="{StaticResource EvanRed}">
+                        BackgroundColor="{StaticResource EvanWhite}"
+                        Margin="0,0,0,10" />
 
-                </Picker>
             </VerticalStackLayout>
 
+            <!-- Primary Action -->
             <Button Text="Add to Collection"
                     Clicked="OnAddCardClicked"
-                    CornerRadius="10"
-                    HeightRequest="50"
-                    Margin="0,20,0,0"
-                    BackgroundColor="{StaticResource EvanYellow}"
-                    TextColor="{StaticResource EvanBlack}" 
-                    FontSize="20"/>
+                    Style="{StaticResource Add Button}"
+                    Margin="0,20,0,10" />
 
         </VerticalStackLayout>
     </ScrollView>

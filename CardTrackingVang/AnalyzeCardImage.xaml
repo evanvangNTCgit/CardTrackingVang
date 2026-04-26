@@ -7,23 +7,72 @@
              xmlns:vm="clr-namespace:CardTrackingVang.ViewModel"
              Style="{StaticResource MobileMargining}"
              Title="AnalyzeCardImage">
-    <VerticalStackLayout>
-        <Grid RowDefinitions="*,*,*,*,* " ColumnDefinitions="*">
-            <Label Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource TitleLabelStyling}" HorizontalOptions="Center" FontSize="25" Margin="10" Text="Tips For Optimal Analysis"></Label>
-            <Label Style="{StaticResource InfoLabel}" Grid.Row=" 1" Grid.Column="0" Text="1. Choose a high resolution image"></Label>
-            <Label Style="{StaticResource InfoLabel}" Grid.Row=" 2" Grid.Column="0" Text="2. Image should be clear"></Label>
-            <Label Style="{StaticResource InfoLabel}" Grid.Row=" 3" Grid.Column="0" Text="3. Image should include only the card"></Label>
-            <Image Margin="10" MaximumHeightRequest="250" Source="pikachucard.png" Grid.Row="4" Grid.ColumnSpan="2"></Image>
-        </Grid>
-        <ActivityIndicator
-            x:Name="AiActivityIndicator"
-            x:DataType="vm:ImageRecognitionViewModel"
-            IsEnabled="{Binding IsAnalyzing}"
-            IsVisible="{Binding IsAnalyzing}"
-            IsRunning="{Binding IsAnalyzing}"
-            Color="Red">
 
-        </ActivityIndicator>
-        <Button Style="{StaticResource Add Button}" x:Name="SelectImageBTN" Text="Pick and Analyze Image" Clicked="SelectImageBTN_Clicked"></Button>
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Spacing="15"
+                             Padding="20"
+                             MaximumWidthRequest="500"
+                             HorizontalOptions="Center">
+
+            <!-- Title -->
+            <Label Text="Tips For Optimal Analysis"
+                   Style="{StaticResource TitleLabelStyling}"
+                   HorizontalOptions="Center"
+                   FontSize="22" />
+
+            <!-- Tips Card -->
+            <Border Style="{StaticResource CardDetailsBorder}">
+                <VerticalStackLayout Spacing="8">
+
+                    <Label Style="{StaticResource InfoLabel}"
+                           Text="1. Choose a high resolution image"
+                           BackgroundColor="Transparent" />
+
+                    <Label Style="{StaticResource InfoLabel}"
+                           Text="2. Image should be clear"
+                           BackgroundColor="Transparent" />
+
+                    <Label Style="{StaticResource InfoLabel}"
+                           Text="3. Image should include only the card"
+                           BackgroundColor="Transparent" />
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Example Image -->
+            <Border Style="{StaticResource CardDetailsBorder}">
+                <Image Source="pikachucard.png"
+                       MaximumHeightRequest="250"
+                       Aspect="AspectFit" />
+            </Border>
+
+            <!-- Loading State -->
+            <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+
+                <ActivityIndicator
+                    x:Name="AiActivityIndicator"
+                    x:DataType="vm:ImageRecognitionViewModel"
+                    IsEnabled="{Binding IsAnalyzing}"
+                    IsVisible="{Binding IsAnalyzing}"
+                    IsRunning="{Binding IsAnalyzing}"
+                    Color="Red"
+                    HeightRequest="40"
+                    WidthRequest="40" />
+
+                <Label Text="Analyzing image..."
+                       IsVisible="{Binding IsAnalyzing}"
+                       TextColor="Gray"
+                       FontSize="12"
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+
+            <!-- Action Button -->
+            <Button Style="{StaticResource Add Button}"
+                    x:Name="SelectImageBTN"
+                    Text="Pick and Analyze Image"
+                    Clicked="SelectImageBTN_Clicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>

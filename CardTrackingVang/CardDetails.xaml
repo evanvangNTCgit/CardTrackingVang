@@ -4,61 +4,101 @@
              x:Class="CardTrackingVang.CardDetails"
              xmlns:CurrencyConversionBind="clr-namespace:CardTrackingVang.Converter"
              Title="CardDetails"
-                          xmlns:Header ="clr-namespace:CardTrackingVang.Header"
+             xmlns:Header="clr-namespace:CardTrackingVang.Header"
              Style="{StaticResource MobileMargining}">
+
     <ContentPage.Resources>
         <CurrencyConversionBind:CurrencyConversion x:Key="currencyBinding"/>
 
+        <!-- Section Label -->
         <Style x:Name="CardDetailsLabels" TargetType="Label">
-            <Setter Property="FontSize" Value="Large"></Setter>
-            <Setter Property="BackgroundColor" Value="{StaticResource EvanYellow}"></Setter>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="Gray"/>
         </Style>
-        <Style x:Name="CardDetailsHorizontalLayouts" TargetType="HorizontalStackLayout">
-            <Setter Property="HorizontalOptions" Value="Center"></Setter>
+
+        <!-- Value Label -->
+        <Style TargetType="Label" x:Key="CardDetailsValue">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextColor" Value="{StaticResource EvanBlack}"/>
         </Style>
+
+        <!-- Section Container -->
         <Style x:Name="CardDetailsBorder" TargetType="Border">
-            <Setter Property="Margin" Value="10"></Setter>
-            <Setter Property="Padding" Value="10"></Setter>
-            <Setter Property="BackgroundColor" Value="{StaticResource EvanWhite}"></Setter>
+            <Setter Property="Margin" Value="10,5"/>
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="BackgroundColor" Value="{StaticResource EvanWhite}"/>
+            <Setter Property="StrokeShape" Value="RoundRectangle 12"/>
+            <Setter Property="Stroke" Value="#DDDDDD"/>
         </Style>
+
     </ContentPage.Resources>
+
     <ScrollView>
-    <VerticalStackLayout>
-        <Header:HeaderApp></Header:HeaderApp>
+        <VerticalStackLayout Spacing="10" Padding="10"
+                             MaximumWidthRequest="500"
+                             HorizontalOptions="Center">
 
-        <Border>
-        <VerticalStackLayout HeightRequest="200" WidthRequest="200">
-            <Image x:Name="CardImage"></Image>
-        </VerticalStackLayout>
-        </Border>
-        <Border>
-        <VerticalStackLayout>
-            <Label  Text="Title:" Padding="10"></Label>
-            <Label  Text="{Binding Title}" Padding="10"/>
-            <Button x:Name="EditTitleBtn" Text="Edit Title" Padding="10" Style="{StaticResource Edit Button}" Clicked="EditTitleBtn_Clicked"></Button>
-        </VerticalStackLayout>
-        </Border>
+            <Header:HeaderApp />
 
-        <Border>
-        <VerticalStackLayout>
-            <Label Text="Declared Value:" Padding="10"></Label>
-            <Label  Text="{Binding Value, Converter={StaticResource currencyBinding}}" Padding="10"/>
-                <Button x:Name="EditValueBtn" Text="Edit Value" Padding="10" Style="{StaticResource Edit Button}" Clicked="EditValueBtn_Clicked"></Button>
-        </VerticalStackLayout>
-        </Border>
-
-        <Border>
-            <VerticalStackLayout>
-                <Label Text="Card Type:" Padding="10"></Label>
-                <Label Text="{Binding CardType}" Padding="10"/>
-            </VerticalStackLayout>
-        </Border>
-        <Border>
-                <HorizontalStackLayout>
-        <Button Style="{StaticResource Add Button}" BackgroundColor="{StaticResource EvanRed}" Text="Delete Card" x:Name="DeleteCardBtn" Clicked="DeleteCardBtn_Clicked"></Button>
-                    <Button Style="{StaticResource Add Button}" BackgroundColor="{StaticResource EvanRed}" Text="Test To Speech" x:Name="TextToSpeechBTN" Clicked="TextToSpeechBTN_Clicked"></Button>
-                </HorizontalStackLayout>
+            <!-- Image Section -->
+            <Border Style="{StaticResource CardDetailsBorder}">
+                <Image x:Name="CardImage"
+                       HeightRequest="200"
+                       Aspect="AspectFit"/>
             </Border>
+
+            <!-- Title Section -->
+            <Border Style="{StaticResource CardDetailsBorder}">
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Title" Style="{StaticResource CardDetailsLabels}" />
+                    <Label Text="{Binding Title}" Style="{StaticResource CardDetailsValue}" />
+                    <Button x:Name="EditTitleBtn"
+                            Text="Edit Title"
+                            Style="{StaticResource Edit Button}"
+                            Clicked="EditTitleBtn_Clicked" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Value Section -->
+            <Border Style="{StaticResource CardDetailsBorder}">
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Declared Value" Style="{StaticResource CardDetailsLabels}" />
+                    <Label Text="{Binding Value, Converter={StaticResource currencyBinding}}"
+                           Style="{StaticResource CardDetailsValue}" />
+                    <Button x:Name="EditValueBtn"
+                            Text="Edit Value"
+                            Style="{StaticResource Edit Button}"
+                            Clicked="EditValueBtn_Clicked" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Type Section -->
+            <Border Style="{StaticResource CardDetailsBorder}">
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Card Type" Style="{StaticResource CardDetailsLabels}" />
+                    <Label Text="{Binding CardType}" Style="{StaticResource CardDetailsValue}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Actions -->
+            <Border Style="{StaticResource CardDetailsBorder}">
+                <VerticalStackLayout Spacing="10">
+
+                    <Button Style="{StaticResource Add Button}"
+                            BackgroundColor="{StaticResource EvanRed}"
+                            Text="Delete Card"
+                            x:Name="DeleteCardBtn"
+                            Clicked="DeleteCardBtn_Clicked" />
+
+                    <Button Style="{StaticResource Add Button}"
+                            Text="Text To Speech"
+                            x:Name="TextToSpeechBTN"
+                            Clicked="TextToSpeechBTN_Clicked" />
+
+                </VerticalStackLayout>
+            </Border>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

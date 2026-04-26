@@ -3,6 +3,7 @@ using CardTrackingVang.DTOs;
 using CardTrackingVang.Models;
 using CardTrackingVang.Services;
 using CardTrackingVang.ViewModel;
+using System.Text;
 
 namespace CardTrackingVang;
 
@@ -42,7 +43,13 @@ public partial class RandomPokemonGen : ContentPage
                 }
             }
             //await DisplayAlertAsync("Caught!", $"{pokemonDTO.Name}\n{pokemonDTO.Types}\n{pokemonDTO.Weight}\n\nWould you like to add {pokemonDTO.Name}?", "OK", );
-            bool answer = await DisplayAlertAsync("CAUGHT!", $"{pokemonDTO.Name}\n{pokemonDTO.Types}\n{pokemonDTO.Weight}\n\nWould you like to add {pokemonDTO.Name}?", "Yes", "No");
+            StringBuilder descBuilder = new();
+            foreach (TypeDTO typeName in pokemonDTO.Types) 
+            {
+                descBuilder.AppendLine(typeName.Type.Name);
+            }
+
+            bool answer = await DisplayAlertAsync("CAUGHT!", $"Caught a: {pokemonDTO.Name}\nType: {descBuilder.ToString()}\nWeight: {pokemonDTO.Weight}\nWould you like to add {pokemonDTO.Name}?", "Yes", "No");
 
             if (answer)
             {

@@ -63,6 +63,7 @@ namespace CardTrackingVang.AiServices
                 }
                 sb.AppendLine($"Return your reponse in the following order Title: x, Value: x, CardType: x");
                 sb.AppendLine("MUST RETURN LIKE THIS: Title: Greninja, Value: 20.00, CardType: Pokemon");
+                sb.AppendLine("DO NOT RETURN ANYTHING ELSE OUTSIDE OF MY PREFERRED FORMAT");
 
 
                 var response = await _chatClient.GetResponseAsync(sb.ToString());
