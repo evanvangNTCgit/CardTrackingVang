@@ -39,7 +39,8 @@ public partial class UserPreferences : ContentPage
     {
         try
         {
-            LoadingUserPreferences.setUserAnimationPreference(!LoadingUserPreferences.GetUserAnimationPreference());
+            bool isAnimationEnabled = LoadingUserPreferences.GetUserAnimationPreference();
+            LoadingUserPreferences.setUserAnimationPreference(!isAnimationEnabled);
             this.AnimationsIsToggled.Text = LoadingUserPreferences.GetUserAnimationPreference() ? "On" : "Off";
         }
         catch (Exception ex)
@@ -52,7 +53,8 @@ public partial class UserPreferences : ContentPage
     {
         base.OnAppearing();
 
-        this.AnimationsToggle.IsToggled = LoadingUserPreferences.GetUserAnimationPreference(); // Will return true as fallback case... no worries for null
-        this.AnimationsIsToggled.Text = LoadingUserPreferences.GetUserAnimationPreference() ? "On" : "Off";
+        bool isAnimationEnabled = LoadingUserPreferences.GetUserAnimationPreference(); // Returns true for fallback case.. no null
+        this.AnimationsToggle.IsToggled = isAnimationEnabled;
+        this.AnimationsIsToggled.Text = isAnimationEnabled ? "On" : "Off";
     }
 }
