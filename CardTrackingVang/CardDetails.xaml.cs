@@ -166,10 +166,11 @@ public partial class CardDetails : ContentPage
         base.OnAppearing();
 
         // return ImageSource.FromFile(this._card.CardImage.ImagePath);
-        if(!string.IsNullOrEmpty(this.cardImagePath)) 
+        if (!string.IsNullOrEmpty(this.cardImagePath))
         {
             this.CardImage.Source = ImageSource.FromFile(this.cardImagePath);
-        } else
+        }
+        else
         {
             switch (this.CardType)
             {
@@ -192,6 +193,21 @@ public partial class CardDetails : ContentPage
                     this.CardImage.Source = ImageSource.FromFile("dotnet_bot.png");
                     break;
             }
+        }
+
+        // If user has animations turned on...
+        if (LoadingUserPreferences.GetUserAnimationPreference())
+        {
+            System.Timers.Timer timer = new(6000);
+            timer.Elapsed += (sender, e) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    VangAnimations.FlipImageAnimation(this.CardImage);
+                });
+            };
+            timer.AutoReset = true;
+            timer.Enabled = true;
         }
     }
 
