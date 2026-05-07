@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Header="clr-namespace:CardTrackingVang.Header"
+             xmlns:Vang="clr-namespace:CardTrackingVang.CustomControls"
              x:Class="CardTrackingVang.Help"
              Title="Help"
              Style="{StaticResource MobileMargining}">
@@ -12,6 +13,11 @@
                              Padding="20"
                              MaximumWidthRequest="600"
                              HorizontalOptions="Center">
+            <VerticalStackLayout.Resources>
+                <Style TargetType="VerticalStackLayout">
+                    <Setter Property="Spacing" Value="8"/>
+                </Style>
+            </VerticalStackLayout.Resources>
 
             <Header:HeaderApp />
 
@@ -25,124 +31,63 @@
 
             <!-- Viewing -->
             <Border Style="{StaticResource CardDetailsBorder}">
-                <VerticalStackLayout Spacing="8">
-
-                    <Label Text="Viewing your collection"
-                           FontAttributes="Bold"
-                           FontSize="16"
-                           TextColor="{StaticResource EvanBlack}" />
-
-                    <Label Text="The home page lists your cards. Tap a card to view details."
-                           TextColor="Gray" />
-
-                    <Label Text="Use header buttons to navigate between pages."
-                           TextColor="Gray" />
-
+                <VerticalStackLayout>
+                    <Vang:HelpLabel Text="Viewing your collection"></Vang:HelpLabel>
+                    <Vang:HelpInfoLabel Text="Home page lists your cards, tap on a card (twice on mobile, once on desktop) to see details"></Vang:HelpInfoLabel>
+                    <Vang:HelpInfoLabel Text="Use header buttons to navigate pages"></Vang:HelpInfoLabel>
                 </VerticalStackLayout>
             </Border>
 
             <!-- Add Card -->
             <Border Style="{StaticResource CardDetailsBorder}">
-                <VerticalStackLayout Spacing="8">
-
-                    <Label Text="Adding a card"
-                           FontAttributes="Bold"
-                           FontSize="16"
-                           TextColor="{StaticResource EvanBlack}" />
-
-                    <Label Text="Open Add Card, enter details, then tap Add to Collection."
-                           TextColor="Gray" />
-
-                    <Label Text="Use numeric keyboard for value input."
-                           TextColor="Gray" />
-
+                <VerticalStackLayout>
+                    <Vang:HelpLabel Text="Adding a card"></Vang:HelpLabel>
+                    <Vang:HelpInfoLabel Text="Open Add Card, enter details, then tap add to collection"></Vang:HelpInfoLabel>
                 </VerticalStackLayout>
             </Border>
 
             <!-- Analyze -->
             <Border Style="{StaticResource CardDetailsBorder}">
-                <VerticalStackLayout Spacing="8">
-
-                    <Label Text="Analyzing a card"
-                           FontAttributes="Bold"
-                           FontSize="16"
-                           TextColor="{StaticResource EvanBlack}" />
-
-                    <Label Text="Use a high-resolution image with minimal background."
-                           TextColor="Gray" />
-
+                <VerticalStackLayout>
+                    <Vang:HelpLabel Text="Analyzing a card"></Vang:HelpLabel>
+                    <Vang:HelpInfoLabel Text="Use a high-resolution image with minimal background"></Vang:HelpInfoLabel>
+                    <Vang:HelpInfoLabel Text="If data is not being recognize by the AI please share image and put an issue on github"></Vang:HelpInfoLabel>
                 </VerticalStackLayout>
             </Border>
 
             <!-- GPS -->
             <Border Style="{StaticResource CardDetailsBorder}">
-                <VerticalStackLayout Spacing="8">
-
-                    <Label Text="GPS coordinates"
-                           FontAttributes="Bold"
-                           FontSize="16"
-                           TextColor="{StaticResource EvanBlack}" />
-
-                    <Label Text="Ensure location permissions are enabled."
-                           TextColor="Gray" />
-
-                    <Label Text="Map marker shows Coulee Cards and Gaming (Wausau)."
-                           TextColor="Gray" />
-
+                <VerticalStackLayout>
+                    <Vang:HelpLabel Text="GPS coordinates"></Vang:HelpLabel>
+                    <Vang:HelpInfoLabel Text="Ensure location permissons are enabled"></Vang:HelpInfoLabel>
+                    <Vang:HelpInfoLabel Text="Map marker shows Coulee Cards and Gaming in Wausau"></Vang:HelpInfoLabel>
                 </VerticalStackLayout>
             </Border>
 
             <!-- PokeAPI -->
             <Border Style="{StaticResource CardDetailsBorder}">
-                <VerticalStackLayout Spacing="8">
-
-                    <Label Text="PokeAPI"
-                           FontAttributes="Bold"
-                           FontSize="16"
-                           TextColor="{StaticResource EvanBlack}" />
-
-                    <Label Text="Catch a random Pokémon and add it to your collection."
-                           TextColor="Gray" />
-
-                    <Label Text="Requires internet connection and HTTPS support."
-                           TextColor="Gray" />
-
+                <VerticalStackLayout>
+                    <Vang:HelpLabel Text="PokeAPI"></Vang:HelpLabel>
+                    <Vang:HelpInfoLabel Text="Catch a random pokemon and add it to your collection!"></Vang:HelpInfoLabel>
+                    <Vang:HelpInfoLabel Text="Using the PokeAPI requires an Internet connection along with HTTPS support"></Vang:HelpInfoLabel>
                 </VerticalStackLayout>
             </Border>
 
             <!-- Editing -->
             <Border Style="{StaticResource CardDetailsBorder}">
-                <VerticalStackLayout Spacing="8">
-
-                    <Label Text="Editing and deleting"
-                           FontAttributes="Bold"
-                           FontSize="16"
-                           TextColor="{StaticResource EvanBlack}" />
-
-                    <Label Text="Edit card details from the card details page."
-                           TextColor="Gray" />
-
-                    <Label Text="Use Delete Card to remove items permanently."
-                           TextColor="Gray" />
-
+                <VerticalStackLayout>
+                    <Vang:HelpLabel Text="Editing and Deleting"></Vang:HelpLabel>
+                    <Vang:HelpInfoLabel Text="Edit card details from the card details page this can be accessed by double tapping the card on mobile and once on desktio."></Vang:HelpInfoLabel>
+                    <Vang:HelpInfoLabel Text="Go into card details and select 'Delete Card' to remove a card"></Vang:HelpInfoLabel>
                 </VerticalStackLayout>
             </Border>
 
             <!-- Troubleshooting -->
             <Border Style="{StaticResource CardDetailsBorder}">
-                <VerticalStackLayout Spacing="8">
-
-                    <Label Text="Troubleshooting"
-                           FontAttributes="Bold"
-                           FontSize="16"
-                           TextColor="{StaticResource EvanBlack}" />
-
-                    <Label Text="Restart app if data does not load properly."
-                           TextColor="Gray" />
-
-                    <Label Text="Check GitHub for issue reporting."
-                           TextColor="Gray" />
-
+                <VerticalStackLayout>
+                    <Vang:HelpLabel Text="Troubleshooting"></Vang:HelpLabel>
+                    <Vang:HelpInfoLabel Text="Restart app if data does not load properly"></Vang:HelpInfoLabel>
+                    <Vang:HelpInfoLabel Text="Please put in an issue on github of any issues"></Vang:HelpInfoLabel>
                 </VerticalStackLayout>
             </Border>
 
