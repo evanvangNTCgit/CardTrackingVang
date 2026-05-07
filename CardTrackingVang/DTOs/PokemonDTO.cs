@@ -20,6 +20,15 @@ namespace CardTrackingVang.DTOs
         // https://stackoverflow.com/questions/39468096/how-can-i-parse-json-string-from-httpclient
         [JsonProperty("types")]
         public List<TypeDTO> Types { get; set; }
+
+        [JsonPropertyName("cries")]
+        public CriesDTO Cries { get; set; }
+    }
+
+    public class CriesDTO
+    {
+        [JsonPropertyName("latest")]
+        public string CrySrc { get; set; }
     }
 
     public class SpriteDTO

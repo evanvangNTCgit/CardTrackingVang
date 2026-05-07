@@ -7,6 +7,7 @@ using CommunityToolkit.Maui;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Plugin.Maui.Audio;
 using Syncfusion.Maui.Core.Hosting;
 
 namespace CardTrackingVang
@@ -19,6 +20,7 @@ namespace CardTrackingVang
             builder
                 .UseMauiCommunityToolkitCamera()
                 .UseMauiApp<App>()
+                .AddAudio()
                 .ConfigureSyncfusionCore()
                 .ConfigureFonts(fonts =>
                 {
