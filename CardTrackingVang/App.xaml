@@ -51,7 +51,7 @@
 
             <!-- Page Styling -->
             <Style x:Key="MobileMargining" TargetType="ContentPage">
-                <Setter Property="Padding" Value="{OnPlatform iOS=0, Android=0, WinUI=20}" />
+                <Setter Property="Padding" Value="{OnPlatform iOS='10,20,10,35', Android='10,20,10,35', WinUI=20}" />
                 <Setter Property="BackgroundColor" Value="{DynamicResource UserBgColor}" />
             </Style>
 

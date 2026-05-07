@@ -32,7 +32,6 @@ namespace CardTrackingVang
             builder.Services.AddTransient<CardDetails>();
             builder.Services.AddTransient<AddCard>();
             builder.Services.AddTransient<MainPage>();
-            builder.Services.AddTransient<CardHandling>();
 
             // Reading from secrets.json
             // CANNOT READ FROM SECRETS.JSON ON MOBILE.
