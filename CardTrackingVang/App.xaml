@@ -12,12 +12,12 @@
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <Color x:Key="EvanBlack">#011627</Color>
+            <Color x:Key="EvanBlack">#000000</Color>
             <Color x:Key="EvanWhite">#FDFFFC</Color>
             <Color x:Key="EvanTeal">#2EC4B6</Color>
             <Color x:Key="EvanRed">#E71D36</Color>
             <Color x:Key="EvanYellow">#FF9F1C</Color>
-            <Color x:Key="UserBgColor">#011627</Color>
+            <Color x:Key="UserBgColor">#000000</Color>
 
             <!-- Title Label -->
             <Style x:Key="TitleLabelStyling" TargetType="Label">
@@ -105,6 +105,7 @@
                 StrokeShape="RoundRectangle 12"
                 Padding="10"
                 HeightRequest="300"
+                            Margin="10"
                 WidthRequest="{OnPlatform Android=175, WinUI=300}">
 
                         <Grid RowDefinitions="*,auto,auto,auto" RowSpacing="5">
