@@ -1,3 +1,4 @@
+using CardTrackingVang.Services;
 using CardTrackingVang.ViewModel;
 
 namespace CardTrackingVang;
@@ -20,6 +21,7 @@ public partial class CardDetails : ContentPage
     public CardDetails(CardsListViewModel clvm)
     {
         InitializeComponent();
+        MobileEntryModification.modifyEntry();
 
         this._cardListViewModel = clvm;
 
@@ -75,7 +77,6 @@ public partial class CardDetails : ContentPage
             OnPropertyChanged();
         }
     }
-
     private async void DeleteCardBtn_Clicked(object sender, EventArgs e)
     {
         try
@@ -196,6 +197,13 @@ public partial class CardDetails : ContentPage
 
     private async void TextToSpeechBTN_Clicked(object sender, EventArgs e)
     {
-        await TextToSpeech.Default.SpeakAsync($"Title {this.Title}... Value of card, {this.Value}... Card Type, {this.CardType}");
+        try
+        {
+            await TextToSpeech.Default.SpeakAsync($"Title {this.Title}... Value of card, {this.Value}... Card Type, {this.CardType}");
+        }
+        catch (Exception ex)
+        {
+            await TextToSpeech.Default.SpeakAsync($"The text to speech for this card if unfourtunately not working please report this issue. Error: {ex.Message}");
+        }
     }
 }

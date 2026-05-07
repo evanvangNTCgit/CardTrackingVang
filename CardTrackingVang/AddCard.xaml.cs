@@ -1,4 +1,5 @@
 using CardTrackingVang.Models;
+using CardTrackingVang.Services;
 using CardTrackingVang.ViewModel;
 
 namespace CardTrackingVang;
@@ -13,10 +14,10 @@ public partial class AddCard : ContentPage
 
     public AddCard(CardsListViewModel clvm)
     {
-        this._cardListViewModel = clvm;
-
         InitializeComponent();
+        MobileEntryModification.modifyEntry();
 
+        this._cardListViewModel = clvm;
         // We need a list of string to set the picker items for card types.
         this._cardTypes = this._cardListViewModel.GetCardTypes();
         this.CardTypePicker.ItemsSource = this._cardTypes.Select(ct => ct.Type).ToList();
