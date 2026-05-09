@@ -54,7 +54,7 @@ public partial class UserPreferences : ContentPage
         base.OnAppearing();
 
         bool isAnimationEnabled = LoadingUserPreferences.GetUserAnimationPreference(); // Returns true for fallback case.. no null
-        this.AnimationsToggle.IsToggled = isAnimationEnabled;
+        // this.AnimationsToggle.IsToggled = isAnimationEnabled; Keeps firing the event on load just have the text clarify if on or not...
         this.AnimationsIsToggled.Text = isAnimationEnabled ? "On" : "Off";
     }
 }

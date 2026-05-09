@@ -9,8 +9,7 @@
              Title="AnalyzeCardImage">
 
     <ScrollView>
-        <VerticalStackLayout Spacing="15"
-                             Padding="20"
+        <VerticalStackLayout
                              MaximumWidthRequest="500"
                              HorizontalOptions="Center">
 

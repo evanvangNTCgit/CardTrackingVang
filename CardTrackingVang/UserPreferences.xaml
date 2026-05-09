@@ -9,8 +9,7 @@
 
     <ScrollView>
 
-        <VerticalStackLayout Spacing="20"
-                             Padding="25"
+        <VerticalStackLayout
                              HorizontalOptions="Center"
                              MaximumWidthRequest="500">
 

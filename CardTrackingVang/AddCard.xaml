@@ -58,14 +58,13 @@
             <!-- Form Section -->
             <VerticalStackLayout Spacing="10">
 
-                <Label Text="Card Name / Title" Style="{StaticResource AddCardLabels}" />
-                <Entry x:Name="TitleEntry"
-                       Style="{StaticResource AddCardEntries}"
+                    <VerticalStackLayout >
+                        <Label Text="Card Name / Title" Style="{StaticResource AddCardLabels}" />
+                        <Entry x:Name="TitleEntry"
                        Placeholder="e.g. Black Lotus" />
-
-                <Label Text="Market Value" Style="{StaticResource AddCardLabels}" />
+                    </VerticalStackLayout>
+                    <Label Text="Market Value" Style="{StaticResource AddCardLabels}" />
                 <Entry x:Name="ValueEntry"
-                       Style="{StaticResource AddCardEntries}"
                        Placeholder="0.00"
                        Keyboard="Numeric" />
 

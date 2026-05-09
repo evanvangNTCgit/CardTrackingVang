@@ -11,6 +11,8 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <!-- Custom vang style CSS -->
+            
 
             <Color x:Key="EvanBlack">#000000</Color>
             <Color x:Key="EvanWhite">#FDFFFC</Color>
@@ -41,7 +43,13 @@
                 <Setter Property="CornerRadius" Value="10"/>
                 <Setter Property="Margin" Value="5"/>
             </Style>
-
+            
+            <!-- Add Label -->
+            <Style TargetType="Label" x:Key="AddCardLabels">
+                <Setter Property="BackgroundColor" Value="{StaticResource EvanWhite}"/>
+                <Setter Property="Padding" Value="2"/>
+            </Style>
+            
             <!-- Edit Button -->
             <Style x:Key="Edit Button" TargetType="Button" BasedOn="{StaticResource Add Button}">
                 <Setter Property="BackgroundColor" Value="{StaticResource EvanRed}" />
