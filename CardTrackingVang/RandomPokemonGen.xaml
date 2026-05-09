@@ -50,6 +50,12 @@
                         Text="Catch!"
                     Clicked="Button_Clicked"/>
 
+            <Image x:Name="pokeballSprite"
+                           Source="pokeball.png"
+                           IsVisible="False"
+                           HeightRequest="120"
+                           WidthRequest="120"
+                           Aspect="AspectFit" />
         </VerticalStackLayout>
 
     </ScrollView>

@@ -12,9 +12,6 @@
         public static Animation ImageWalkAnimation(Image imageToWalk)
         {
             // var animation = new Animation(v => imageToWalk.Scale = v, 1, 2);
-            var origX = imageToWalk.X;
-            var origY = imageToWalk.Y;
-
             var parentAnimation = new Animation();
             parentAnimation.Add(0, 0.5, new Animation(v => imageToWalk.Rotation = v, 0, -50, easing: Easing.CubicInOut));
             parentAnimation.Add(0, 0.5, new Animation(v => imageToWalk.TranslationX = v, 0, -75, easing: Easing.CubicInOut));
@@ -29,6 +26,52 @@
             parentAnimation.Add(0.99, 1, new Animation(v => imageToWalk.TranslationX = v, 0, 0, easing: Easing.CubicInOut));
 
             return parentAnimation;
+        }
+
+        /// <summary>
+        /// Throws a pokeball image. at the pokemon.
+        /// </summary>
+        /// <param name="pokemonImage"></param>
+        /// <param name="pokeballImage"></param>
+        /// <returns></returns>
+        public static (Animation, bool) ThrowPokeBallAnimation(Image pokemonImage, Image pokeballImage)
+        {
+            pokeballImage.IsVisible = true;
+
+            double startX = pokeballImage.TranslationX;
+            double startY = pokeballImage.TranslationY;
+
+            double targetX = pokemonImage.TranslationX;
+            double targetY = pokemonImage.TranslationY;
+
+            Random rnd = new Random();
+            int captured = rnd.Next(1, 9); // Lets give user 33% chance to catch.
+            bool success = captured > 6;
+
+            var parentAnimation = new Animation();
+
+            parentAnimation.Add(0, 0.8, new Animation(v => pokeballImage.Rotation = v, 0, 720, easing: Easing.Linear));
+
+            parentAnimation.Add(0, 0.8, new Animation(v => pokeballImage.Scale = v, 2.0, 1.0, easing: Easing.CubicOut));
+
+            parentAnimation.Add(0, 0.8, new Animation(v => pokeballImage.TranslationX = v, startX, targetX, easing: Easing.CubicOut));
+
+            double peakY = targetY - 300;
+            parentAnimation.Add(0, 0.4, new Animation(v => pokeballImage.TranslationY = v, startY, peakY, easing: Easing.CubicOut));
+
+            parentAnimation.Add(0.4, 0.8, new Animation(v => pokeballImage.TranslationY = v, peakY, peakY, easing: Easing.CubicIn, finished: () =>
+            {
+                pokeballImage.IsVisible = false;
+
+                if (success)
+                {
+                    pokemonImage.IsVisible = false;
+                }
+            }));
+
+            parentAnimation.Add(0.9, 1, new Animation(v => pokeballImage.TranslationY = v, peakY, startY, easing: Easing.CubicIn));
+
+            return (parentAnimation, success);
         }
     }
 }
