@@ -1,28 +1,21 @@
-# Platforms Targeted
-- Windows
-- Android
+# Platform Specific UI
+- Padding is different between mobile and desktop
+- iOS is given more padding on the bottom
+- Mobile devices double tap on cards to view details compared to desktop just one
 
-# Pages Used
-- Main Page 
-- CardsHandling Page 
-- Card Details Page
-- Add Card Page
+# Styling 
+- Usage of numerous global resources within App.Xaml
+- A set of Custom 'Evan' Colors
+- Shared font, themes, colors throughout
 
-# Page UI Techniques Used
-- Implemeted shared colours to use through out the app
-- Shared font sizes and datatemplates throughout the app
+# Advanced Styling Techniqes
+- A custom handler to select all text when editing label (especially useful for edit card page)
+- Custom controls made in a 'CustomControls' folder. I made a HelpInfoLabel, HelpLabel, PreferenceHeadLabel, PreferenceInfoLabel. These custom XAML elements significanly reduce verbosity in one XAML file and less styling in XAML elements.
+# Animations
+- A pokeball throw animation is implemented
+- A card flip animation is implemented when you click on a card and go to the details page
 
-# Data Binding & Value Converter
-- Binded my CardViewModels to the XAML throughout my pages
-- Also implemented a value converter to turn a decimal to a proper string (EX: 1000 => $1,000)
-
-# Reusable Component
-In my app.xaml.cs I made it a custom control to make datatemplates that implement a certain styling to handle navigation.
-
-# Platform-Specific UI Usage
-- Modified interactions based on platform
-- UI changes based on platform
-
-# Meaningful stats and flow
-- Tabs provide ease of use for navigation
-- Alerts made for database operation to make sure user is aware of their changes
+# Additional Info
+- 8 pages used
+- Spaced out controls
+- Consistent Styling
