@@ -21,6 +21,7 @@ public partial class AddCard : ContentPage
         // We need a list of string to set the picker items for card types.
         this._cardTypes = this._cardListViewModel.GetCardTypes();
         this.CardTypePicker.ItemsSource = this._cardTypes.Select(ct => ct.Type).ToList();
+        this.UserImage.IsVisible = false;
     }
 
     private async void OnAddCardClicked(object sender, EventArgs e)
@@ -69,6 +70,12 @@ public partial class AddCard : ContentPage
 
             this._cardListViewModel.AddCardWithModel(cardGettingAdded);
 
+            this.UserImage.Source = null;
+            this.UserImage.IsVisible = false;
+            this.TitleEntry.Text = null;
+            this.ValueEntry.Text = null;
+            this.CardTypePicker.SelectedItem = null;
+
             await DisplayAlertAsync("Success", "Card added successfully!\nTaking you back...", "OK");
             await Shell.Current.GoToAsync("///MainPage");
         }
@@ -93,6 +100,7 @@ public partial class AddCard : ContentPage
             {
                 this.UserPhotoSubmission = photo;
                 this.UserImage.Source = photo.FullPath;
+                this.UserImage.IsVisible = true;
             } else
             {
                 this.UserPhotoSubmission = null;

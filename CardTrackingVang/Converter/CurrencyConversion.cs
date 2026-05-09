@@ -14,11 +14,11 @@ namespace CardTrackingVang.Converter
             if(value is decimal d) 
             {
                 // Based on region of user.
-                return d.ToString("C0", CultureInfo.CurrentCulture);
+                return d.ToString("C", CultureInfo.CurrentCulture);
             } else
             {
                 decimal t = 0;
-                return t.ToString("C0", CultureInfo.CurrentCulture);
+                return t.ToString("C", CultureInfo.CurrentCulture);
             }
         }
 

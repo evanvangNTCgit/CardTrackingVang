@@ -43,15 +43,10 @@
                         Clicked="TakePhotoBTN_Clicked"
                         Style="{StaticResource Add Button}" />
 
-                <Border Stroke="#DDDDDD"
-                        StrokeShape="RoundRectangle 10"
-                        BackgroundColor="{StaticResource EvanWhite}"
-                        HeightRequest="200"
-                        Padding="5">
-
-                    <Image x:Name="UserImage"
-                           Aspect="AspectFit" />
-                </Border>
+                <Image x:Name="UserImage"
+                           Aspect="AspectFit"
+                           HeightRequest="200"
+                           Margin="5"/>
 
             </VerticalStackLayout>
 
