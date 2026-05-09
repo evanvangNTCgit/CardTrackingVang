@@ -47,7 +47,8 @@
 
             </Border>
             <Button Style="{StaticResource Add Button}"
-                        Text="Catch!"/>
+                        Text="Catch!"
+                    Clicked="Button_Clicked"/>
 
         </VerticalStackLayout>
 

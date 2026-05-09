@@ -80,6 +80,14 @@
                     <Vang:HelpInfoLabel Text="Go into card details and select 'Delete Card' to remove a card"></Vang:HelpInfoLabel>
                 </VerticalStackLayout>
             </Border>
+            
+            <!-- Animations Help -->
+            <Border Style="{StaticResource CardDetailsBorder}">
+                <VerticalStackLayout>
+                    <Vang:HelpLabel Text="Animations"></Vang:HelpLabel>
+                    <Vang:HelpInfoLabel Text="If animations are not preferred please go in Preferences tab and turn off animations."></Vang:HelpInfoLabel>
+                </VerticalStackLayout>
+            </Border>
 
             <!-- Troubleshooting -->
             <Border Style="{StaticResource CardDetailsBorder}">

@@ -1,5 +1,6 @@
 using CardTrackingVang.DataServices;
 using CardTrackingVang.DTOs;
+using CardTrackingVang.Models;
 using CardTrackingVang.Services;
 using CardTrackingVang.ViewModel;
 using Plugin.Maui.Audio;
@@ -14,6 +15,7 @@ public partial class RandomPokemonGen : ContentPage
     private readonly DataService _dataService;
     private readonly IAudioManager _audioManager;
     private readonly HttpClient _httpClient = new();
+    private PokemonDTO pokemonCaught = null;
 
 
     public RandomPokemonGen(CardsListViewModel clvm, DataService ds, IAudioManager audioManager)
@@ -38,58 +40,24 @@ public partial class RandomPokemonGen : ContentPage
         PokemonDTO pokemonDTO = await _pokeApiService.GetRandomPokemon();
         if (pokemonDTO != null)
         {
-            if (!string.IsNullOrEmpty(pokemonDTO.Sprites.FrontDefault))
+            this.pokemonCaught = pokemonDTO;
+
+            if (!string.IsNullOrEmpty(this.pokemonCaught.Sprites.FrontDefault))
             {
                 this.pokmeonSprite.Source = string.Empty;
-                this.pokmeonSprite.Source = new Uri(pokemonDTO.Sprites.FrontDefault);
+                this.pokmeonSprite.Source = new Uri(this.pokemonCaught.Sprites.FrontDefault);
             }
             //await DisplayAlertAsync("Caught!", $"{pokemonDTO.Name}\n{pokemonDTO.Types}\n{pokemonDTO.Weight}\n\nWould you like to add {pokemonDTO.Name}?", "OK", );
             StringBuilder descBuilder = new();
-            descBuilder.Append($" {pokemonDTO.Name}\n");
-            foreach (TypeDTO typeName in pokemonDTO.Types)
+            descBuilder.Append($" {this.pokemonCaught.Name}\n");
+            foreach (TypeDTO typeName in this.pokemonCaught.Types)
             {
                 descBuilder.Append($" {typeName.Type.Name}");
             }
 
             this.PokemonInfoText.Text = descBuilder.ToString();
 
-            await this.PlayPokemonCry(pokemonDTO);
-
-            //bool answer = await DisplayAlertAsync("CAUGHT!", $"Caught a: {pokemonDTO.Name}\nType: {descBuilder.ToString()}\nWeight: {pokemonDTO.Weight}\nWould you like to add {pokemonDTO.Name}?", "Yes", "No");
-
-            //if (answer)
-            //{
-            //    try
-            //    {
-            //        CardType ct = this._dataService.GetCardType("Pokemon");
-            //        if (ct == null)
-            //        {
-            //            ct = this._dataService.GetCardType(1);
-            //        }
-
-            //        string spriteURL = pokemonDTO.Sprites.FrontDefault;
-            //        string FileName = pokemonDTO.Name;
-            //        string imagePath = await this.DownloadSprite(spriteURL, FileName); // Adds GUID in method.
-
-            //        Card newPokemonCard = new Card { Title = pokemonDTO.Name, CardTypeID = ct.Id, CardType = ct };
-
-            //        CardImage newPokeImage = new CardImage()
-            //        {
-            //            ImagePath = imagePath,
-            //            Card = newPokemonCard,
-            //        };
-
-            //        newPokemonCard.CardImage = newPokeImage;
-
-            //        this._cardListViewModel.AddCardWithModel(newPokemonCard);
-
-            //        await Shell.Current.GoToAsync("//MainPage");
-            //    }
-            //    catch
-            //    {
-            //        await DisplayAlertAsync("ALERT", "Failed to add card\nPlease contact Evan Vang of error", "OK");
-            //    }
-            //}
+            await this.PlayPokemonCry(this.pokemonCaught);
         }
     }
 
@@ -98,16 +66,16 @@ public partial class RandomPokemonGen : ContentPage
         try
         {
             var audioBytes = await this._httpClient.GetByteArrayAsync(pokemonTalking.Cries.CrySrc);
-
-            // Takes about half a second for image to load.
-            await Task.Delay(500);
-
             using (MemoryStream memoryStream = new MemoryStream(audioBytes))
             {
                 using (IAudioPlayer player = this._audioManager.CreatePlayer(memoryStream))
                 {
+                    // Takes about half a second for image to load.
+                    await Task.Delay(500);
                     player.Play();
-                    await Task.Delay(4500);
+
+                    // Player.duration returns seconds... So convert to milliseconds.
+                    await Task.Delay((int)Math.Ceiling(player.Duration * 1000));
                 }
             }
         }
@@ -128,5 +96,52 @@ public partial class RandomPokemonGen : ContentPage
         await File.WriteAllBytesAsync(localFilePath, bytes);
 
         return localFilePath;
+    }
+
+    private async void Button_Clicked(object sender, EventArgs e)
+    {
+        if (this.pokemonCaught != null)
+        {
+            if (LoadingUserPreferences.GetUserAnimationPreference())
+            {
+                var originalX = this.pokmeonSprite.X;
+                var originalY = this.pokmeonSprite.Y;
+                var test = VangAnimations.ImageWalkAnimation(this.pokmeonSprite);
+
+                test.Commit(this, "PokemonWalking", length: 2500);
+            }
+
+            //try
+            //{
+            //    CardType ct = this._dataService.GetCardType("Pokemon");
+            //    // If ct null originally...
+            //    ct ??= this._dataService.GetCardType(1);
+
+            //    string spriteURL = this.pokemonCaught.Sprites.FrontDefault;
+            //    string FileName = this.pokemonCaught.Name;
+            //    string imagePath = await this.DownloadSprite(spriteURL, FileName); // Adds GUID in method.
+
+            //    Card newPokemonCard = new Card { Title = this.pokemonCaught.Name, CardTypeID = ct.Id, CardType = ct };
+
+            //    CardImage newPokeImage = new CardImage()
+            //    {
+            //        ImagePath = imagePath,
+            //        Card = newPokemonCard,
+            //    };
+
+            //    newPokemonCard.CardImage = newPokeImage;
+
+            //    this._cardListViewModel.AddCardWithModel(newPokemonCard);
+
+            //    await Shell.Current.GoToAsync("//MainPage");
+            //}
+            //catch (Exception ex)
+            //{
+            //    await DisplayAlertAsync("ALERT", $"Failed to add card\nPlease contact Evan Vang of error\n{ex.Message}", "OK");
+            //}
+        } else
+        {
+            await DisplayAlertAsync("ALERT", "You seem to have not caught a pokemon yet...\nClick select a random pokemon!", "OK");
+        }
     }
 }
