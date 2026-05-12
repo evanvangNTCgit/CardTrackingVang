@@ -13,8 +13,6 @@ namespace CardTrackingVang.DataAccess
 
         public DataContext() 
         {
-            this.Database.EnsureDeleted();
-            this.Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
